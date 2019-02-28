@@ -7,7 +7,7 @@ body{
 }
 @font-face {
     font-family: 'Roboto-Medium';
-    src: url("../fonts/Roboto-Medium.ttf");
+    src: url("../assets/fonts/Roboto-Medium.ttf");
 }	
 .container{
 	width: 100%;

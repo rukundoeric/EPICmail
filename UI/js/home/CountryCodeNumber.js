@@ -19,6 +19,7 @@ class CountryCodeNumber{
     	return names;
     }
     getFlag(code){
+        //return country flag
         return '../assets/images/flags/'+code.toLowerCase(code)+'.png';
     }
     createCountryList(){

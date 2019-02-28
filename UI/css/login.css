@@ -2,7 +2,7 @@
 @import url(preloader.css);
 @font-face {
     font-family: 'Roboto-Medium';
-    src: url("../fonts/Roboto-Medium.ttf");
+    src: url("../assets/fonts/Roboto-Medium.ttf");
 }
 body{
   margin: 0;

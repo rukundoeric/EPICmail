@@ -5,7 +5,7 @@
 <title>EPICMail</title>
   <link rel="shortcut icon" href="../assets/images/logo.png" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="../css/home.css">
-  
+
 </head>
 <body>
   <!-- Preloader Start -->
@@ -62,7 +62,7 @@
                       </div>
                     </div>
                     <div class="left-navigation-dawer-opened-button-compose">
-                      
+
                         <button onclick="openPage('compose.html')"> Compose </button>
 
                     </div>
@@ -150,20 +150,20 @@
          <td class="task-content-td">
 
               <div class="task-content">
-                    
+
                     <div class="content-list">
                           <div class="content-header">
                               <div class="g-h-title title">
                                   <span>Inbox</span>
-                               </div> 
+                               </div>
                                <div class="g-h-title search">
                                   <input class="search_contents_tools" type="text" name="" placeholder="Search">
                                   <div class="g-h-menu inbox search">
                                   <button class="search search_contents_tools">
-                                  <i><img  src="../assets/images/icons/search.png"></i> 
+                                  <i><img  src="../assets/images/icons/search.png"></i>
                                   </button>
                                </div>
-                               </div> 
+                               </div>
 
                           </div>
                           <div class="line"></div>
@@ -172,22 +172,22 @@
                                 <svg class="inbox-menu-icon" viewBox="0 0 32 32"><use xlink:href="#man-users"></use></svg>
                                 <span class="inbox-menu-title">Individual</span>
                                 <span id="top_menu_inbox_counter" class="inbox-menu-counter"></span>
-                               </div> 
+                               </div>
                                <div class="g-h-inbox-menu groups" onclick="swich_individual_or_group()">
                                <svg class="inbox-menu-icon" viewBox="0 0 32 32"><use xlink:href="#man-groups"></use></svg>
                                 <span class="inbox-menu-title">Groups</span>
                                 <span id="top_menu_inbox_group_counter" class="inbox-menu-counter"></span>
-                               </div> 
+                               </div>
                                <div class="g-h-menu inbox reflesh">
                                   <button class="buttons-headers reflesh">
-                                  <i><img  src="../assets/images/icons/reflesh.png"></i> 
+                                  <i><img  src="../assets/images/icons/reflesh.png"></i>
                                   </button>
-                               </div> 
+                               </div>
                                <div class="g-h-menu inbox delete">
                                   <button class="buttons-headers reflesh">
-                                  <i><img  src="../assets/images/icons/delete.png"></i> 
+                                  <i><img  src="../assets/images/icons/delete.png"></i>
                                   </button>
-                               </div>    
+                               </div>
                           </div>
                           <div class="line"></div>
                            <div class="content_list_table">
@@ -199,8 +199,8 @@
                               </table>
                            </div>
                     </div>
-                      
-              </div> 
+
+              </div>
          </td>
        </tr>
       </table>
@@ -208,7 +208,7 @@
 
         <div class="modal" id="send_sms_dialog">
             <div class="sms_dialog_content">
-              
+
                 <div class="sms_dialog_content_header">
                   <span>Send SMS</span>
                 </div>
@@ -220,7 +220,7 @@
                            <datalist id="country_list"></datalist>
                        </div>
                        <div class="phone_number_field_menu c-code">
-                           <input id="country_code_number" disabled="true" placeholder="+250"> 
+                           <input id="country_code_number" disabled="true" placeholder="+250">
                        </div>
                        <div class="phone_number_field_menu phone_number">
                            <input type="phone" name="" placeholder="Phone Number">
@@ -228,7 +228,7 @@
                    </div>
                    <div class="message_field">
                        <textarea>
-                         
+
                        </textarea>
                    </div>
                 </div>
@@ -242,12 +242,14 @@
         </div>
 
    </div>
- <script type="text/javascript" src="../js/home/CountryCodeNumber.js"></script>    
- <script type="text/javascript" src="../js/home/draft.js" ></script>  
- <script type="text/javascript" src="../js/home/sent.js" ></script>
- <script type="text/javascript" src="../js/home/inbox.js" ></script>
- <script type="text/javascript" src="../js/home/control.js"></script>  
- <script type="text/javascript" src="../js/preloader.js"></script>
+   <script type="text/javascript" src="../dist/js/home/utils.js"></script>
+  <script type="text/javascript" src="../dist/js/home/CountryCodeNumber.js"></script>
+  <script type="text/javascript" src="../dist/js/home/control.js"></script>
+  <script type="text/javascript" src="../dist/js/preloader.js"></script>
+  <script type="text/javascript">
+    RefleshContent('individual');
+    RefleshContent('group');
+  </script>
   <!--Define all Icon-->
 <svg version="1.1" style="display: none;">
   <defs>

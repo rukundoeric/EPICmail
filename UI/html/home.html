@@ -206,50 +206,53 @@
       </table>
       </div>
 
-        <div class="modal" id="send_sms_dialog">
-            <div class="sms_dialog_content">
+      <div class="modal" id="send_sms_dialog">
+          <div class="sms_dialog_content">
 
-                <div class="sms_dialog_content_header">
-                  <span>Send SMS</span>
-                </div>
-                <div class="line"></div>
-                <div class="sms_dialog_content_content">
-                   <div class="phone_number_field">
-                       <div class="phone_number_field_menu c_name">
-                           <input id="country_name" type="text" onchange="ChangeFlagAndCode();" placeholder="Select country"list="country_list">
-                           <datalist id="country_list"></datalist>
-                       </div>
-                       <div class="phone_number_field_menu c-code">
-                           <input id="country_code_number" disabled="true" placeholder="+250">
-                       </div>
-                       <div class="phone_number_field_menu phone_number">
-                           <input type="phone" name="" placeholder="Phone Number">
-                       </div>
-                   </div>
-                   <div class="message_field">
-                       <textarea>
+              <div class="sms_dialog_content_header">
+                <span>Send SMS</span>
+              </div>
+              <div class="line"></div>
+              <div class="sms_dialog_content_content">
+                 <div class="phone_number_field">
+                     <div class="phone_number_field_menu flag">
+                         <img id="country_flag_icon" src="../dist/images/flags/rw.png">
+                     </div>
+                     <div class="phone_number_field_menu c_name">
+                         <input id="country_name" type="text" onchange="ChangeFlagAndCode();" placeholder="Select country"list="country_list">
+                         <datalist id="country_list"></datalist>
+                     </div>
+                     <div class="phone_number_field_menu c-code">
+                         <input id="country_code_number" disabled="true" placeholder="+250">
+                     </div>
+                     <div class="phone_number_field_menu phone_number">
+                         <input type="phone" name="" placeholder="Phone Number">
+                     </div>
+                 </div>
+                 <div class="message_field">
+                     <textarea>
 
-                       </textarea>
-                   </div>
-                </div>
-                <div class="line"></div>
-                <div class="sms_dialog_content_foooter">
-                  <button>Send</button>
-                  <button>Cancel</button>
-                </div>
+                     </textarea>
+                 </div>
+              </div>
+              <div class="line"></div>
+              <div class="sms_dialog_content_foooter">
+                <button>Send</button>
+                <button>Cancel</button>
+              </div>
 
-            </div>
-        </div>
+          </div>
+      </div>
 
-   </div>
-   <script type="text/javascript" src="../dist/js/home/utils.js"></script>
-  <script type="text/javascript" src="../dist/js/home/CountryCodeNumber.js"></script>
-  <script type="text/javascript" src="../dist/js/home/control.js"></script>
-  <script type="text/javascript" src="../dist/js/preloader.js"></script>
-  <script type="text/javascript">
-    RefleshContent('individual');
-    RefleshContent('group');
-  </script>
+ </div>
+<script type="text/javascript" src="../dist/js/home/utils.js"></script>
+<script type="text/javascript" src="../dist/js/home/CountryCodeNumber.js"></script>
+<script type="text/javascript" src="../dist/js/home/control.js"></script>
+<script type="text/javascript" src="../dist/js/preloader.js"></script>
+<script type="text/javascript">
+ RefleshContent('individual');
+ RefleshContent('group');
+</script>
   <!--Define all Icon-->
 <svg version="1.1" style="display: none;">
   <defs>

@@ -16,7 +16,7 @@ table{
     height: inherit;
 }
 .g-t-tr{
-    height: 35px;
+    height: 50px;
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
@@ -130,7 +130,7 @@ table{
 
 .content-header{
     border: 0px solid green;
-    height: 40px;   
+    height: 40px;
 }
 .g-h-title{
    border: 0px solid gray;
@@ -147,13 +147,13 @@ table{
 }
 .g-h-title.search input{
    height: 25px;
-   padding-left: 10px: 
+   padding-left: 10px:
 }
 
 .g-h-title span{
     font-size: 20px;
     font-family: Roboto-Medium;
-    height: 40px; 
+    height: 40px;
     color: var(--rayol-primary-color);
 }
 .content-menus{
@@ -162,8 +162,8 @@ table{
 }
 .img-user-row{
   margin-top: 5px;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 .line{
@@ -182,7 +182,7 @@ table{
 .g-t-td.feed{
   font-size: 12px;
   color: gray;
-  font-family: Roboto-Medium; 
+  font-family: Roboto-Medium;
 }
 .g-t-td.sender{
   font-size: 14px;
@@ -203,12 +203,12 @@ table{
 margin-right: -7px;
 padding-left: 10px;
 border-bottom-left-radius: 10px;
-border-top-left-radius: 10px; 
+border-top-left-radius: 10px;
 border: var(--field-border-radius) solid var(--rayol-primary-color);
 }
 .g-h-title.search button{
 border-bottom-right-radius: 10px;
-border-top-right-radius: 10px; 
+border-top-right-radius: 10px;
 background-color: var(--rayol-primary-color);
 height: 2.2em;
 width: 2.2em;
@@ -306,7 +306,7 @@ width: 2.2em;
   padding-left: 10px;
   width: 97%;
   height: 30px;
- 
+
 }
 .g-h-menu-sens_mail select,
 input{
@@ -320,7 +320,7 @@ input{
    border: 0.05em solid gray;
   width: 96%;
   padding: 15px;
-  height: 280px; 
+  height: 280px;
 }
 .send_mail{
   float: left;
@@ -330,15 +330,15 @@ float: right;
 }
 .modal {
 
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
+  display: none;
+  position: fixed;
+  z-index: 1;
   padding-top: 100px;
   left: 0;
-  top: 0; 
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }

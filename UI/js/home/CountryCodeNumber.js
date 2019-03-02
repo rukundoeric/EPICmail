@@ -18,6 +18,9 @@ class CountryCodeNumber{
     	this.countryList.forEach((item) => data.push(item.name));
     	return names;
     }
+    getFlag(code){
+        return '../dist/images/flags/'+code.toLowerCase(code)+'.png';
+    }
     createCountryList(){
           var dataList = document.getElementById('country_list');
           this.countryList.forEach((item) => {
@@ -31,7 +34,9 @@ class CountryCodeNumber{
 var ccNumber = new CountryCodeNumber();
 ccNumber.createCountryList();
 const ChangeFlagAndCode = () => {
+    var flag_image = document.getElementById('country_flag_icon');
     var contry_name = document.getElementById('country_name').value;
+    flag_image.setAttribute("src",ccNumber.getFlag(ccNumber.getCodeByName(contry_name)));
     var country_code_number = document.getElementById('country_code_number');
     country_code_number.setAttribute("placeholder",ccNumber.getCodeNumberByName(contry_name));
 }

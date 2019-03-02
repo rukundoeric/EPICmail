@@ -3,25 +3,26 @@
 @import url(row.css);
 body{
 	margin: 0;
-	background-color:  var(--rayal-white-sec);; 
+	background-color:  var(--rayal-white-sec);;
 }
 @font-face {
     font-family: 'Roboto-Medium';
     src: url("../assets/fonts/Roboto-Medium.ttf");
-}	
+}
 .container{
 	width: 100%;
     position:absolute;
     margin: auto;
     top: 0;
     left: 0;
-	height:inherit;
-    background-color: var(--rayal-white-sec);
+	height:85.2%;
+    background-color: white; /* var(--rayal-white-sec);*/
 	}
 .top-navigation{
 	width:inherit;
 	background-color: var(--rayol-primary-color);
     z-index: 1000;
+    float: unset;
     -webkit-box-shadow:0px 0px 8px var(--rayal-white-borders);
     -moz-box-shadow:0px 0px 8px var(--rayal-white-borders);
 	}
@@ -54,7 +55,7 @@ body{
 	align-items: center;
 	}
 .name-div{
-  
+
 	 display: inline-block;
 	 width: 80px;
 	 height: 60px;
@@ -137,9 +138,9 @@ body{
 	margin-top:-35px;
 	}
 .body-contant-navigation{
-	margin-top: 5px;
 	width:98%;
-	height:inherit;
+	height:100%;
+	padding: 10px;
 	background-color: var(--rayal-white-sec);
 	}
 
@@ -156,7 +157,7 @@ body{
 	padding-bottom: 30px;
 	border-radius: 10px;
      background-color: var(--rayal-white);
-	 height:420px;
+	 height:100%;
      border-radius: var(--border-radius);
     -webkit-box-shadow:0px 0px 6px var(--rayal-white-borders);
     -moz-box-shadow:0px 0px 6px var(--rayal-white-borders);
@@ -164,7 +165,7 @@ body{
 
 .left-navigation-drawer.open{
 	 width:220px;
-	 height:420px;
+	 height:100%;
 	}
 .left-navigation-drawer.close{
 	 width:48px;
@@ -296,9 +297,10 @@ table{
 }
 .tast_content_main
 {
+	border: 0px solid red;
 	width: 100%;
-	margin-top:20px;
-	margin-left:10px; 
+	/*margin-top:20px;*/
+	/*margin-left:10px;*/
 }
 
 .task-content-td{
@@ -306,11 +308,10 @@ table{
 }
 .task-content{
 	padding: 15px;
-	margin-left: 30px;
-	width: 94%;
-	height: 420px;
-	
-	border-color: var(--rayol-primary-color); 
+	margin-left: 10px;
+	width: 96%;
+	height: 100%;
+	border-color: var(--rayol-primary-color);
 	background-color:  var(--rayal-white);
 	border-radius: 5px;
      -webkit-box-shadow:0px 0px 6px var(--rayal-white-borders);
@@ -405,7 +406,7 @@ border: 0;
 	width: 50%;
 	height: 350px;
 	background-color: white;
-	border-radius: 15px; 
+	border-radius: 15px;
    margin: auto;
 }
 .sms_dialog_content_header{
@@ -443,7 +444,7 @@ button:hover
 	padding-left:30px;
 	padding-right: 30px;
 	padding-bottom: 30px;
-	padding-top: 5px; 
+	padding-top: 5px;
 }
 .message_field textarea{
    height: 70px;

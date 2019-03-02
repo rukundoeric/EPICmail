@@ -5,7 +5,7 @@
 <title>EPICMail</title>
   <link rel="shortcut icon" href="../assets/images/logo.png" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="../css/home.css">
-  
+
 </head>
 <body>
   <!-- Preloader Start -->
@@ -63,7 +63,7 @@
                       </div>
                     </div>
                     <div class="left-navigation-dawer-opened-button-compose">
-                      
+
                         <button onclick="openPage('home.html')"> Back </button>
 
                     </div>
@@ -129,43 +129,43 @@
          <td class="task-content-td">
 
               <div class="task-content">
-                    
+
                     <div class="content-list">
                           <div class="content-header">
                               <div class="g-h-title title">
                                   <span>Compose</span>
-                               </div> 
+                               </div>
                                  <div class="g-h-menu send_mail send search_contents_tools">
                                   <button class="buttons-headers send">
-                                  <i><img  src="../assets/images/icons/send.png"></i> 
+                                  <i><img  src="../assets/images/icons/send.png"></i>
                                   </button>
-                               </div> 
+                               </div>
                                <div class="g-h-menu send_mail save_draft search_contents_tools">
                                   <button class="buttons-headers draft">
                                   <i><img  src="../assets/images/icons/draft.png"></i>
                                   </button>
-                               </div>    
+                               </div>
 
                                <div class="g-h-menu send_mail save_draft search_contents_tools">
                                   <button class="buttons-headers delete">
                                   <i><img  src="../assets/images/icons/delete.png"></i>
                                   </button>
-                               </div>                        
+                               </div>
 
                           </div>
                           <div class="line"></div>
                           <div class="content-menus">
-                               
+
                                <div class="g-h-menu-sens_mail subject">
                                    <input type="text" placeholder="Subject :" name="">
-                               </div> 
+                               </div>
                                <div class="g-h-menu-sens_mail to_type">
                                    <select>
                                       <option>Select receiver..</option>
                                       <option>Individual</option>
                                       <option>Group</option>
                                    </select>
-                               </div> 
+                               </div>
                                <div class="g-h-menu-sens_mail to">
                                    <input type="text" placeholder="To :" name="" list="contacts">
                                    <datalist id="contacts">
@@ -174,25 +174,28 @@
                                     <option>cyizashad066@gmail.com</option>
                                     <option>mukunzifra066@gmail.com</option>
                                   </datalist>
-                               </div> 
-                               
+                               </div>
+
                           </div>
                           <div class="line"></div>
                            <div class="content_list_table compose">
                              <textarea class="content_write_mail"></textarea>
                            </div>
                     </div>
-                      
-              </div> 
+
+              </div>
 
          </td>
        </tr>
       </table>
       </div>
    </div>
- <script type="text/javascript" src="../js/home/contacts.js"></script>
- <script type="text/javascript" src="../js/home/control.js"></script>  
- <script type="text/javascript" src="../js/preloader.js"></script>
+   <script type="text/javascript" src="../dist/js/home/utils.js"></script>
+   <script type="text/javascript" src="../dist/js/home/control.js"></script>
+   <script type="text/javascript" src="../dist/js/preloader.js"></script>
+    <script type="text/javascript">
+     RefleshContent('compose');
+   </script>
   <!--Define all Icon-->
 <svg version="1.1"style="display: none;">
   <defs>

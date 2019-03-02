@@ -5,7 +5,7 @@
 <title>EPICMail</title>
   <link rel="shortcut icon" href="../assets/images/logo.png" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="../css/home.css">
-  
+
 </head>
 <body>
   <!-- Preloader Start -->
@@ -63,7 +63,7 @@
                       </div>
                     </div>
                     <div class="left-navigation-dawer-opened-button-compose">
-                      
+
                         <button onclick="openPage('../pages/compose.html')"> Compose </button>
 
                     </div>
@@ -73,7 +73,7 @@
                       </div>
                       <div class="left-navigation-dawer-opened-buttons-title-div">
                           <span class="left-navigation-dawer-opened-buttons-title"><a class="home-links inbox" href="home.html">Inbox</a></span>
-                          <span class="menu-counter">3</span>
+                          <span id="left_menu_inbox_counter" class="menu-counter"></span>
                       </div>
 
                     </div>
@@ -129,36 +129,36 @@
          <td class="task-content-td">
 
               <div class="task-content">
-                    
+
                     <div class="content-list">
                           <div class="content-header">
                               <div class="read-mail-title read_mail">
                                   <span>Read Mail</span>
-                               </div> 
+                               </div>
                               <div class="g-h-menu read_mail forward">
                                   <button class="buttons-headers forward">
-                                  <i><img  src="../assets/images/icons/forward.png"></i> 
+                                  <i><img  src="../assets/images/icons/forward.png"></i>
                                   </button>
-                               </div> 
+                               </div>
                                <div class="g-h-menu read_mail reply">
                                   <button class="buttons-headers reply">
-                                  <i><img  src="../assets/images/icons/reply.png"></i> 
+                                  <i><img  src="../assets/images/icons/reply.png"></i>
                                   </button>
                                </div>
                                <div class="g-h-menu read_mail delete">
                                   <button class="buttons-headers delete">
-                                  <i><img  src="../assets/images/icons/delete.png"></i> 
+                                  <i><img  src="../assets/images/icons/delete.png"></i>
                                   </button>
-                               </div> 
+                               </div>
                           </div>
                           <div class="line"></div>
                           <div class="content-menus">
                                <div class="read-mail-subject">
                                   <span>Message Subject</span>
-                               </div> 
+                               </div>
                                 <div class="read-mail-from">
                                   <span>From: ericrukundo055@gmail.com</span>
-                               </div> 
+                               </div>
                                 <div class="read-mail-date">
                                   <span>26 Feb. 2018 11:03 PM</span>
                                </div>
@@ -166,27 +166,31 @@
                           <div class="line"></div>
                            <div class="content_list_table">
                                 <div class="read_message_content">
-                                    
+
                                         <p>Hello John,</p>
 
                                         <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American Apparel.</p>
 
                                         <p>Raw denim McSweeney's bicycle rights, iPhone trust fund quinoa Neutra VHS kale chips vegan PBR&B literally Thundercats +1. Forage tilde four dollar toast, banjo health goth paleo butcher. Four dollar toast Brooklyn pour-over American Apparel sustainable, lumbersexual listicle gluten-free health goth umami hoodie. Synth Echo Park bicycle rights DIY farm-to-table, retro kogi sriracha dreamcatcher PBR&B flannel hashtag irony Wes Anderson. Lumbersexual Williamsburg Helvetica next level. Cold-pressed slow-carb pop-up normcore Thundercats Portland, cardigan literally meditation lumbersexual crucifix. Wayfarers raw denim paleo Bushwick, keytar Helvetica scenester keffiyeh 8-bit irony mumblecore whatever viral Truffaut.</p>
-          
+
                                 </div>
                            </div>
                     </div>
-                      
-              </div> 
+
+              </div>
 
          </td>
        </tr>
       </table>
       </div>
    </div>
- 
- <script type="text/javascript" src="../js/home/control.js"></script>  
- <script type="text/javascript" src="../js/preloader.js"></script>
+
+   <script type="text/javascript" src="../dist/js/home/utils.js"></script>
+    <script type="text/javascript" src="../dist/js/home/control.js"></script>
+    <script type="text/javascript" src="../dist/js/preloader.js"></script>
+     <script type="text/javascript">
+      RefleshContent('inbox_read_mail');
+    </script>
   <!--Define all Icon-->
 <svg version="1.1" style="display: none;">
   <defs>

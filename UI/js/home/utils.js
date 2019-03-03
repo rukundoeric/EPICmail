@@ -40,7 +40,7 @@ class inboxIndividual {
 		      "id": "1",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    },
@@ -48,7 +48,7 @@ class inboxIndividual {
 		      "id": "1",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    }];
@@ -70,7 +70,7 @@ class Sent {
 		      "id": "4",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../../UI/assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    },
@@ -78,7 +78,7 @@ class Sent {
 		      "id": "6",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../../UI/assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    }];
@@ -103,7 +103,7 @@ class Draft {
 		      "id": "1",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../../UI/assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    },
@@ -111,7 +111,7 @@ class Draft {
 		      "id": "1",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../../UI/assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    },
@@ -119,7 +119,7 @@ class Draft {
 		      "id": "1",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../../UI/assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    },
@@ -127,7 +127,7 @@ class Draft {
 		      "id": "1",
 		      "createdOn": "Feb 24",
 		      "subject": "Greating",
-		      "image":"../dist/images/profile.png",
+		      "image":"../../UI/assets/images/profile.png",
 		      "message":"Hello my friend i was thinking if we can meet and discus about our deal and then make disision!",
 		      "status":"sent"
 		    }];
@@ -222,7 +222,7 @@ const creatInboxIndividualRow = (tbody,position,data) => {
 		            var td_name = document.createElement('td');
 		            td_name.classList.add('g-t-td');
 		            td_name.classList.add('name');
-		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/pages/inbox_read_mail.html')");
+		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/html/inbox_read_mail.html')");
 		            var name= document.createTextNode(data.subject);
 		            td_name.appendChild(name);
 		    //then append td_name to tr element        
@@ -331,7 +331,7 @@ const createSentRow = (tbody,position,data) => {
 		            var td_name = document.createElement('td');
 		            td_name.classList.add('g-t-td');
 		            td_name.classList.add('name');
-		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/pages/inbox_read_mail.html')");
+		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/html/inbox_read_mail.html')");
 		            var name= document.createTextNode(data.subject);
 		            td_name.appendChild(name);
 		    //then append td_name to tr element        
@@ -391,7 +391,7 @@ const createDraftRow = (tbody,position,data) => {
 		            var td_name = document.createElement('td');
 		            td_name.classList.add('g-t-td');
 		            td_name.classList.add('name');
-		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/pages/inbox_read_mail.html')");
+		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/html/inbox_read_mail.html')");
 		            var name= document.createTextNode(data.subject);
 		            td_name.appendChild(name);
 		    //then append td_name to tr element        
@@ -441,7 +441,7 @@ const createContactRow = (tbody, position,data) => {
 		            var td_name = document.createElement('td');
 		            td_name.classList.add('g-t-td');
 		            td_name.classList.add('name');
-		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/pages/inbox_read_mail.html')");
+		            td_name.setAttribute("onclick","openReadMessagePage('../../UI/html/inbox_read_mail.html')");
 		            var name= document.createTextNode(data.firstName+" "+data.lastName);
 		            td_name.appendChild(name);
 		    //then append td_name to tr element        

@@ -10,6 +10,29 @@ class Message{
     constructor(){
       dotenv.config();
     }
+    async createMessage(req, res, next){
+        try{
+          if(!req.body.subject || !req.body.message || !req.body.status){
+              res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_INPUTS);
+          }
+          let message = {
+              id: req.body.id,
+              createdOn : moment(new Date()),
+              subject : req.body.subject,
+              message : req.body.message,
+              parentMessageId : req.body.parentMessageId,
+              status : req.body.status
+          }
+          const myUsername = userName_Token;
+          messageModal.addMessage(myUsername,message);
+          return res.status(ST.OK).send({
+              "status" : ST.OK,
+              "data":[message]
+          })
+        }catch(error){
+            next(new Error(error));
+        }
+    }
     async getAllReceivedMessages(req, res, next){
             const myUsername = userName_Token;
             if(!myUsername){

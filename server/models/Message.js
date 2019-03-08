@@ -64,6 +64,20 @@ class Message {
         }
     ];
    }  
+   async addMessage(myEmail,message){
+    if(!message){
+        return false;
+    }else{
+        if(message.status == 'sent'){
+            let sent = {senderId:myEmail,messageId:message.id,createdOn:moment(new Date())}
+             Sent.addSent(sent);
+            let inbox = {receiverId:message.receiverId,messageId:message.id,createdOn:moment(new Date())}
+             Inbox.addInbox(inbox);
+         }
+         this.MessagesList.push(message); 
+         return  true;
+    }
+   }
    async getAllReceivedEmails(myUsername){
      // Fetch all Inbox Messages which their receiverId is equal to my UserId 
      // (1) get UserId by username which is user email 'myUsername'

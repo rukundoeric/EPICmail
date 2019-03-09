@@ -11,6 +11,8 @@ class User {
         dotenv.config();
     }
     async createUser(req, res, next){
+       
+        try{
 
             helper.hashPassword(req.body.password).then((pwd) => {
                 const user ={
@@ -31,44 +33,50 @@ class User {
                     });
                 });
             })
+  
+        }catch(error){
+
+            next(new Error(error));
+        }
     }
     async login(req, res, next){
-        if (!req.body.email || ! req.body.password){
-            return res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_INPUTS);
-        }
-        else{
-    
-           if(!Helper.isValidEmail(req.body.email)){
-              return res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_INPUTS);
-           }
-           else{
-                  
-                  
-                   userModel.getUserByEmail(req.body.email).then((user) => {
-                       if(!user){
-                           return res.status(ST.NOT_FOUND).send(MSG.MSG_NO_USER_EXIST);
-                       }else{
-                           Helper.isCorrestPassword(req.body.password,user.password).then((result) => {
-    
-                               if(!result){
-                                   return res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_PASSWORD);
-                               }else{
-                                   
-                                   auth.generateToken(user).then((token) => {
-                               
-                                       return res.status(ST.OK).send({
-                                           "status" : ST.OK,
-                                           "data" : [{"token" : token}]
-                                       });
-                       
-                                   });
-                               }
-                           });
-                       }
-                   })
-                  
-           }
-        }   
+         if (!req.body.email || ! req.body.password){
+             return res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_INPUTS);
+         }
+         else{
+
+            if(!Helper.isValidEmail(req.body.email)){
+               return res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_INPUTS);
+            }
+            else{
+                   
+                   
+                    userModel.getUserByEmail(req.body.email).then((user) => {
+                        if(!user){
+                            return res.status(ST.NOT_FOUND).send(MSG.MSG_NO_USER_EXIST);
+                        }else{
+                            Helper.isCorrestPassword(req.body.password,user.password).then((result) => {
+  
+                                if(!result){
+                                    return res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_PASSWORD);
+                                }else{
+                                    
+                                    auth.generateToken(user).then((token) => {
+                                
+                                        return res.status(ST.OK).send({
+                                            "status" : ST.OK,
+                                            "data" : [{"token" : token}]
+                                        });
+                        
+                                    });
+                                }
+                            });
+                        }
+                    })
+                   
+            }
+         }   
+         
     }
 }
 export default new User();

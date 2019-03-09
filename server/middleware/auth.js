@@ -9,6 +9,10 @@ class Auth {
     constructor(){
         dotenv.config();
     }
+    async generateToken(user) {
+       const token = jwt.sign({username: user.email }, process.env.JWT_SECRET, { expiresIn: '20d' });
+       return token;
+    }
     async verifyToken(req, res, next){
         let token = isSpecRunning ? userToken : req.headers['Authorisation'];
         if(!token){
@@ -27,7 +31,6 @@ class Auth {
             req.user = {email: decoded.username};
             next();
         });
-
     }
 }
 export default new Auth();

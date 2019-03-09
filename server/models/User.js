@@ -37,6 +37,7 @@ class UserModel  {
             }              
         ]
     }
+
     async addUser(user){
         if(!user){
             return false;
@@ -44,6 +45,20 @@ class UserModel  {
             this.UserList.push(user);
             return true;
         }
+    }
+
+    async getUserByEmail(email){
+     return this.UserList.find((user) => user.email === email);
+    }
+    async getUserIdByEmail(email){
+        let user = this.UserList.find((user) => user.email === email)
+        return !user ? null : user.id;
+    }
+    async getUserById(id){
+        return this.UserList.find((user) => user.id === id)
+    }
+    async getAllUsers(){
+        return this.UserList;
     }
 }
 

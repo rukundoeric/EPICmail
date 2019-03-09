@@ -9,6 +9,26 @@ class Auth {
     constructor(){
         dotenv.config();
     }
+    async verifyToken(req, res, next){
+        let token = isSpecRunning ? userToken : req.headers['Authorisation'];
+        if(!token){
+            return res.status(ST.BAD_REQUEST).send({
+                "status" : ST.BAD_REQUEST,
+                "error" : "Token is not provided"
+            });
+        }
+        
+        const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+        userModal.getUserByEmail(decoded.username).then((user) => {
+            if(user===null){
+                res.status(ST.BAD_REQUEST).send(MSG.MSG_INVALID_TOKEN);
+            }
+
+            req.user = {email: decoded.username};
+            next();
+        });
+
+    }
     async generateToken(user) {
        const token = jwt.sign({username: user.email }, process.env.JWT_SECRET, { expiresIn: '20d' });
        return token;

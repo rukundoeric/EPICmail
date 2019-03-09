@@ -1,0 +1,47 @@
+@import url(default_them.css);
+@import url(preloader.css);
+@import url(home.css);
+.setting_body{
+	margin: auto;
+	left: 0;
+	right: 0;
+	width: 400px;
+	position: relative;
+    height: 500px;
+    border: 0px solid gray;
+    -webkit-box-shadow:0px 0px 8px var(--rayal-white-borders);
+    -moz-box-shadow:0px 0px 8px var(--rayal-white-borders);
+}
+.Back_settings_button{
+	width: 400px;
+	height: 25px;
+	background-color: var(--rayol-primary-color);
+	color: white;
+	border: 0;
+	border-radius: 5px;
+	font-family: Roboto-Medium;
+}
+
+.settings_profile{
+	padding: 20px;
+    display: -webkit-box;
+	 display: -ms-flexbox;
+	 display: -webkit-flex;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+}
+.settings_profile_image{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+.settings_profile button{
+	width: 150px;
+	height: 25px;
+	background-color: var(--rayol-primary-color);
+	color: white;
+	border: 0;
+	border-radius: 5px;
+	font-family: Roboto-Medium;
+}

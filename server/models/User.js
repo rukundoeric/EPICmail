@@ -45,7 +45,11 @@ class UserModel  {
             return true;
         }
     }
+<<<<<<< HEAD
     async getUserByEmail(email){
+=======
+async getUserByEmail(email){
+>>>>>>> 1086f3504c8fa2244fb664a2a695dcf2d2c06d01
      return this.UserList.find((user) => user.email === email);
     }
     async getUserIdByEmail(email){
@@ -58,7 +62,10 @@ class UserModel  {
     async getAllUsers(){
         return this.UserList;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1086f3504c8fa2244fb664a2a695dcf2d2c06d01
 }
 
 export default new UserModel();

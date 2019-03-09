@@ -8,7 +8,7 @@
     "node": "10.15.1"
   },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text babel-node server/tests/runner.js",
+    "test": "babel-node server/tests/runner.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "start": "node config/start.js",
     "heroku-postbuild": "npm install --production"

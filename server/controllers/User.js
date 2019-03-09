@@ -11,8 +11,6 @@ class User {
         dotenv.config();
     }
     async createUser(req, res, next){
-       
-        try{
 
             helper.hashPassword(req.body.password).then((pwd) => {
                 const user ={
@@ -33,14 +31,6 @@ class User {
                     });
                 });
             })
-  
-        }catch(error){
-
-            next(new Error(error));
-        }
-
-
-
     }
     async login(req, res, next){
         if (!req.body.email || ! req.body.password){

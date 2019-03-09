@@ -37,7 +37,6 @@ class UserModel  {
             }              
         ]
     }
-
     async addUser(user){
         if(!user){
             return false;
@@ -46,7 +45,6 @@ class UserModel  {
             return true;
         }
     }
-
     async getUserByEmail(email){
      return this.UserList.find((user) => user.email === email);
     }
@@ -60,6 +58,7 @@ class UserModel  {
     async getAllUsers(){
         return this.UserList;
     }
+
 }
 
 export default new UserModel();

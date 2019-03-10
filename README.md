@@ -24,7 +24,3 @@ EPICmail is a web mail that help users to send and receive emails all over the w
 | /api/v1/messages/sent    | GET           | Get All Sent Messages          |
 | /api/v1/messages/`<id>`  | GET           | Get Specified Message by id    |
 | /api/v1/messages/`<id>`  | DELETE        | Delete Specified Message by id |
-
-### Open API documentation
-
-<a href="https://epicmaileric.herokuapp.com/"><img width="50px" height="50px" src="https://firebasestorage.googleapis.com/v0/b/webtest-1995b.appspot.com/o/images%2Flogo.png?alt=media&token=7f378bf4-1466-4875-bbca-8d69290986e1"></a>

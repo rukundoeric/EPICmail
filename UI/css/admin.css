@@ -1,0 +1,69 @@
+@import url(default_them.css);
+@import url(home.css);
+.content-menus button{
+	border: 0;
+}
+.content_list_table button{
+	background-color: var(--rayol-primary-color);
+	color: white;
+	border: 0;
+	border-radius: var( --border-radius);
+	font-size: 8px;
+	height: 20px;
+}
+
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px; 
+  left: 0;
+  top: 0;	
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+/* Modal Content */
+.modal_content {
+  background-color: #fefefe;
+  margin: auto;
+   border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+.dialog_header{
+	width: 100%;
+	height: 40px;
+	border: 0px solid gray;
+}
+.dialog_header{
+	size: 15px;
+	font-family: Roboto-Medium;
+	color: var(--rayol-primary-color);
+}
+.dialog_content{
+	width: 100%;
+	border: 0px solid gray;
+	height: 100px;
+}
+.dialog_footer{
+	width: 100%;
+	height: 40px;
+	border: 0px solid gray;
+}
+.dialog_footer button {
+ float: right;
+ margin: 10px;
+ height: 30px;
+ padding: 5px;
+ padding-left: 10px;
+ padding-right: 10px;
+ border: 0;
+ border-radius: 5px;
+ color: white;
+ background-color: var(--rayol-primary-color);
+}

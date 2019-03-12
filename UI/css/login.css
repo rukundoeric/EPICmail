@@ -16,10 +16,7 @@ body{
 
 .container{
   width: 360px;
-  height: inherit;
-  position: absolute;
-  right: 0;
-  left: 0;
+  height: 400px;
 }
 .container:before,
 .container:after{

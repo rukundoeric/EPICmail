@@ -58,6 +58,15 @@ filter: alpha(opacity=70);
   margin: auto;
   border: 0px solid blue;
 }
+.body_container{
+  height: 500px;
+  display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .logo-content-title{
 	width: 300px;
 	margin-top: 0px;

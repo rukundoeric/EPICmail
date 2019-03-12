@@ -13,8 +13,12 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
-
-.login_container{
+.login-web-name{
+  color: var(--rayal-white);
+  font-family: Roboto-Medium;
+  font-size: 20PX;
+}
+.container{
   width: 360px;
   height: 400px;
 }
@@ -23,7 +27,6 @@ body{
    display: table;
   content: " ";
 }
-
 .task-content {
   margin-top: 50px;
   min-height: 20px;
@@ -57,7 +60,7 @@ filter: alpha(opacity=70);
   border: 0px solid blue;
 }
 .body_container{
-  height: 600px;
+  height: 700px;
   display: -webkit-box;
 	display: -ms-flexbox;
 	display: -webkit-flex;

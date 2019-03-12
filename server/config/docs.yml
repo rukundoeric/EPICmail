@@ -1,0 +1,320 @@
+swagger: "2.0"
+info:
+  description: "This is the documentation of EPICmail API hosted on Heroku"
+  version: "1.0.0"
+  title: "EPICmail"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "ericrukundo055@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "https://epicmaileric.herokuapp.com/"
+basePath: "/api/v1"
+tags:
+- name: "auth"
+  description: " Authorize User to be able to send and receive message "
+- name: "message"
+  description: " Send and receive messages "
+
+schemes:
+- "https"
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  JWT_Token_User:
+    type: apiKey
+    in: header
+    name: Authorization
+paths:
+  /auth/login:
+    post:
+      summary: "Logs registered user"
+      tags:
+        - "auth"
+      operationId: authLogin
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created user object"
+          required: true
+          schema:
+            $ref: "#/definitions/UserLogin"
+      responses:
+        '200':
+          description: return authentication information
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 200
+              data:
+                $ref: "#/definitions/token"
+        '404':
+          description: Email not registered, please signup!
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                 example: 404
+              message:
+                type: string
+        '401':
+          description: Incorrect Password!!!
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 404
+              message:
+                type: string
+  /auth/signup:
+    post:
+      summary: "Register new user"
+      tags:
+        - "auth"
+      operationId: authSignup
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/UserSignup"
+      responses:
+        '201':
+          description: return Authentication infromation
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 404
+              data:
+                $ref: "#/definitions/token"
+  /messages/:id:
+    delete:
+      summary: "Delete Message"
+      tags:
+        - "message"
+      operationId: "deleteSpecifiedMessages"  
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Delete Specified Message"
+          required: true
+          schema:
+            $ref: "#/definitions/message"
+      responses:
+        '200':
+          description: return message information
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                   message:
+                     type: string
+                     example: "Message Delete Successfull"
+  /messages:
+    post:
+      summary: "Send Message"
+      tags:
+        - "message"
+      operationId: "sendMessages"  
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Send Or Saved Message"
+          required: true
+          schema:
+            $ref: "#/definitions/message"
+      responses:
+        '200':
+          description: return message information
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 200
+              data:
+                $ref: "#/definitions/message" 
+  /messages/unread:
+    get:
+      summary: "Get All UnRead Received Messages"
+      tags:
+        - "message"
+      operationId: "getAllUnReadReceivedEmails"  
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Get All Unread Received"
+          required: true
+          schema:
+            $ref: "#/definitions/message"
+      responses:
+        '200':
+          description: return unread messages
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 200
+              data:
+                $ref: "#/definitions/message" 
+  /messages/sent:
+    get:
+      summary: "Get All Sent Messages"
+      tags:
+        - "message"
+      operationId: "getSentMessage"  
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Get All Sent Messages"
+          required: true
+          schema:
+            $ref: "#/definitions/message"
+      responses:
+        '200':
+          description: return sent messages
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 200
+              data:
+                $ref: "#/definitions/message"   
+  /messages/:id:
+    get:
+      summary: "Get specific Messages"
+      tags:
+        - "message"
+      operationId: "getSpecificMessage"  
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Get Specific Messages"
+          required: true
+          schema:
+            $ref: "#/definitions/message"
+      responses:
+        '200':
+          description: return specific messages
+          schema:
+            type: object
+            properties:
+              status: 
+                type: integer
+                example: 200
+              data:
+                $ref: "#/definitions/message"
+           
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+        format: id
+      email:
+        type: string
+        format: email
+      first_name:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string   
+    required: 
+      - id
+      - email
+      - first_name
+      - last_name
+      - password
+  UserSignup:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: number
+      email:
+        type: string
+        format: email
+      password:
+        type: string
+        pattern: '.{8,64}'
+        example: '123456'
+      first_name:
+        type: string
+        example: Eric
+      last_name:
+        type: string
+        example: Rukundo
+    required:
+      - id
+      - email
+      - password
+      - first_name
+      - last_name
+      - password
+  UserLogin:
+    type: object
+    properties:
+      email:
+        type: string
+        format: email
+        example: "ericrukundo005@gmail.com"
+      password:
+        type: string
+        pattern: ".{6,60}"
+        example: "13085211"
+    required: 
+      - email
+      - password
+  token:
+    type: string
+    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVyaWNydWt1bmRvMDA1QGdtYWlsLmNvbSIsImlhdCI6MTU1MTkzMzIwNywiZXhwIjoxNTUzNjYxMjA3fQ.27DB7Rxr9hk_PBUvn7pdEkawNerxM-FB8ufTDrgPXf8'
+   
+  message:
+    type: object
+    properties:
+      id:
+        type: integer 
+        example: 2
+      createdOn: 
+        type: date 
+        example: '2019-03-04T05:44:00.494Z'
+      subject: 
+        type: string 
+        example: Invitation to mariage
+      senderId:
+        type: integer  
+        example: 1
+      receiverId:
+        type: integer
+        example: 6
+      message:
+        type: string 
+        example: Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!
+      parentMessageId: 
+        type: integer 
+        example: 1
+      status: 
+        type: string 
+        example: sent  
+          
+
+
+

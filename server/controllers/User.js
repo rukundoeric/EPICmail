@@ -49,9 +49,7 @@ class User {
                return res.status(ST.BAD_REQUEST).send(MSG.MSG_WRONG_INPUTS);
             }
             else{
-                   
-                   
-                    userModel.getUserByEmail(req.body.email).then((user) => {
+                   userModel.getUserByEmail(req.body.email).then((user) => {
                         if(!user){
                             return res.status(ST.NOT_FOUND).send(MSG.MSG_NO_USER_EXIST);
                         }else{

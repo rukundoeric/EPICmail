@@ -13,7 +13,7 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
-.web-name{
+.signup-web-name{
   color: var(--rayal-white);
   font-family: Roboto-Medium;
   font-size: 20PX;

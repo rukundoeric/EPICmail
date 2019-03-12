@@ -16,7 +16,7 @@ body{
     top: 0;
     left: 0;
 	height:85.2%;
-    background-color: white; /* var(--rayal-white-sec);*/
+    background-color: var(--rayal-white-sec);
 	}
 .top-navigation{
 	width:inherit;

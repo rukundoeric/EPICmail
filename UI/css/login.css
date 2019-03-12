@@ -13,11 +13,6 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
-.login-web-name{
-  color: var(--rayal-white);
-  font-family: Roboto-Medium;
-  font-size: 20PX;
-}
 .container{
   width: 360px;
   height: 400px;
@@ -26,6 +21,11 @@ body{
 .container:after{
    display: table;
   content: " ";
+}
+.login-web-name{
+  color: var(--rayal-white);
+  font-family: Roboto-Medium;
+  font-size: 20PX;
 }
 .task-content {
   margin-top: 50px;

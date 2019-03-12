@@ -28,7 +28,6 @@ body{
   font-size: 20PX;
 }
 .task-content {
-  margin-top: 50px;
   min-height: 20px;
   padding: 30px;
   margin-bottom: 20px;
@@ -60,7 +59,7 @@ filter: alpha(opacity=70);
   border: 0px solid blue;
 }
 .body_container{
-  height: 700px;
+  height: 600px;
   display: -webkit-box;
 	display: -ms-flexbox;
 	display: -webkit-flex;

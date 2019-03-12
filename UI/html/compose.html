@@ -39,7 +39,7 @@
              </div>
 
             <div class="icon-profile-nav">
-             <img class="icon-profile" src="../assets/images/profile.png" alt=""/>
+             <img onclick="openPage('settings.html')" class="icon-profile" src="../assets/images/profile.png" alt=""/>
            </div>
 
          </div>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="left-navigation-dawer-opened-button-compose">
 
-                        <button onclick="openPage('home.html')"> Back </button>
+                        <button onclick="openPage('home.html')" title="Go back Inbox"> Back </button>
 
                     </div>
                     <div class="left-navigation-dawer-opened-buttons icon-inbox-open-nav " onclick="openPage('home.html')">
@@ -136,18 +136,18 @@
                                   <span>Compose</span>
                                </div>
                                  <div class="g-h-menu send_mail send search_contents_tools">
-                                  <button class="buttons-headers send">
+                                  <button class="buttons-headers send"  title="Send">
                                   <i><img  src="../assets/images/icons/send.png"></i>
                                   </button>
                                </div>
                                <div class="g-h-menu send_mail save_draft search_contents_tools">
-                                  <button class="buttons-headers draft">
+                                  <button class="buttons-headers draft" title="Save to draft">
                                   <i><img  src="../assets/images/icons/draft.png"></i>
                                   </button>
                                </div>
 
                                <div class="g-h-menu send_mail save_draft search_contents_tools">
-                                  <button class="buttons-headers delete">
+                                  <button class="buttons-headers delete" title="delete the message">
                                   <i><img  src="../assets/images/icons/delete.png"></i>
                                   </button>
                                </div>

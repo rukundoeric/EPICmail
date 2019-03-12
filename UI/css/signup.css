@@ -15,14 +15,18 @@ body{
 }
 
 .container{
-  width: 700px;
+  width: 680px;
   height: inherit;
   position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+}
+.setup_body_container{
+  height: 700px;
+  display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .container:before,
 .container:after{
@@ -31,7 +35,7 @@ body{
 }
 .task-content {
   display: none;
-  margin-top: 60px;
+  margin-top: 20px;
   min-height: 20px;
   padding: 30px;
   margin-bottom: 20px;

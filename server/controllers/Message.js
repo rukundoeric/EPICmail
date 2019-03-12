@@ -34,7 +34,7 @@ class Message{
       }
     }
     async getAllReceivedMessages(req, res, next){
-            const myUsername = userName_Token;
+            const myUsername =  req.headers['Authorisation'];
             if(!myUsername){
                //If myUsername is underfined, means that token is invalid or 
                //expired, so you have to reauthenticate.

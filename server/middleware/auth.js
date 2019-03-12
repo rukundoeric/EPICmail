@@ -10,7 +10,7 @@ class Auth {
         dotenv.config();
     }
     async verifyToken(req, res, next){
-        let token = isSpecRunning ? userToken : req.headers['Authorisation'];
+        let token =  req.headers['Authorisation'];
         if(!token){
             return res.status(ST.BAD_REQUEST).send({
                 "status" : ST.BAD_REQUEST,

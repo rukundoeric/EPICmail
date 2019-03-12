@@ -185,8 +185,14 @@ color: var( --rayol-primary-color);
   font-family: Roboto-Medium;
   font-size: 12px;
 }
+.s-c-div span a{
+    margin: 30px;
+    float: right;
+  }
+ 
 .s-c-div-desc{
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 .s-c-div-title{
     color:  var(--rayol-primary-color);

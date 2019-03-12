@@ -23,6 +23,7 @@ body{
    display: table;
   content: " ";
 }
+
 .task-content {
   margin-top: 50px;
   min-height: 20px;

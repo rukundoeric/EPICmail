@@ -4,6 +4,15 @@ class Helper {
    constructor(){
        dotenv.config();
        this.bcrpt = bcrpt;
+       this.isStrongPassword = password => {
+        // at least one number, one lowercase and one uppercase letter
+        // at least six characters that are letters, numbers or the underscore
+        var st_pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/;
+        return st_pass.test(password);
+       }
+       this.isValidEmail = email => {
+        return /\S+@\S+\.\S+/.test(email);
+       } 
    }
 
 async hashPassword(password){
@@ -12,8 +21,6 @@ async hashPassword(password){
 async isCorrestPassword(pass_req,pass_res){
     return bcrpt.compare(pass_req, pass_res);
 }
-isValidEmail(email) {
-    return /\S+@\S+\.\S+/.test(email);
-  }  
+ 
 }
 export default new Helper();

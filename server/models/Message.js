@@ -11,8 +11,8 @@ class Message {
             "id": 2,
             "createdOn": "2019-03-04T05:44:00.494Z",
             "subject": "Invitation to mariage",
-            "senderId":1,
-            "receiverId":6,
+            "senderId":"b1fa330c-e2d0-43ca-a6d0-6c461e80c7ad",
+            "receiverId":"a5fb0450-2da1-4278-ba0f-8b930604b976",
             "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
             "parentMessageId": "1",
             "status": "sent"
@@ -20,8 +20,8 @@ class Message {
             "id": 1,
             "createdOn": "2019-03-04T05:44:00.494Z",
             "subject": "Invitation to mariage",
-            "senderId":3,
-            "receiverId":6,
+            "senderId":"5461d96a-4dfb-4bc7-991f-d7f443af563a",
+            "receiverId":"a5fb0450-2da1-4278-ba0f-8b930604b976",
             "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
             "parentMessageId": "1",
             "status": "sent"
@@ -29,8 +29,8 @@ class Message {
             "id": 3,
             "createdOn": "2019-03-04T05:44:00.494Z",
             "subject": "Invitation to mariage",
-            "senderId":2,
-            "receiverId":6,
+            "senderId":"5461d96a-4dfb-4bc7-991f-d7f443af563a",
+            "receiverId":"b1fa330c-e2d0-43ca-a6d0-6c461e80c7ad",
             "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
             "parentMessageId": "1",
             "status": "sent"
@@ -38,8 +38,8 @@ class Message {
             "id": 4,
             "createdOn": "2019-03-04T05:44:00.494Z",
             "subject": "Invitation to mariage",
-            "senderId":2,
-            "receiverId":3,
+            "senderId":"5461d96a-4dfb-4bc7-991f-d7f443af563a",
+            "receiverId":"a5fb0450-2da1-4278-ba0f-8b930604b976",
             "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
             "parentMessageId": "1",
             "status": "draft"
@@ -47,8 +47,8 @@ class Message {
             "id": 5,
             "createdOn": "2019-03-04T05:44:00.494Z",
             "subject": "Invitation to mariage",
-            "senderId":3,
-            "receiverId":6,
+            "senderId":"a5fb0450-2da1-4278-ba0f-8b930604b976",
+            "receiverId":"b1fa330c-e2d0-43ca-a6d0-6c461e80c7ad",
             "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
             "parentMessageId": "1",
             "status": "read"
@@ -56,14 +56,55 @@ class Message {
             "id": 6,
             "createdOn": "2019-03-04T05:44:00.494Z",
             "subject": "Invitation to mariage",
-            "senderId":1,
-            "receiverId":6,
+            "senderId":"a5fb0450-2da1-4278-ba0f-8b930604b976",
+            "receiverId":"b1fa330c-e2d0-43ca-a6d0-6c461e80c7ad",
             "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
             "parentMessageId": "1",
             "status": "read"
-        }
+       },
+            {
+            "id": 7,
+            "createdOn": "2019-03-04T05:44:00.494Z",
+            "subject": "Invitation to mariage",
+            "senderId":"5461d96a-4dfb-4bc7-991f-d7f443af563a",
+            "receiverId":"b1fa330c-e2d0-43ca-a6d0-6c461e80c7ad",
+            "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
+            "parentMessageId": "1",
+            "status": "read"
+            },
+            {
+                "id": 11,
+                "createdOn": "2019-03-04T05:44:00.494Z",
+                "subject": "Invitation to mariage",
+                "senderId":"5461bc7-991f-d7f443af563a",
+                "receiverId":"b1fa43ca-a6d0-6c461e80c7ad",
+                "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
+                "parentMessageId": "1",
+                "status": "read"
+                }
     ];
-   }  
+    this.getAllIds = () => {
+        let myMessagesId =[];
+            this.MessagesList.forEach((message) => {
+                myMessagesId.push(message.id);
+            }); 
+        return myMessagesId;    
+    }
+   }
+   generateMessageId() {
+        let A = this.getAllIds();
+        return [...A].sort().reduce((acc, curr, i, arr) => {
+        if (acc > curr) {
+            arr.splice(1);
+            return acc;
+        }
+        else if (arr[i + 1] - curr > 1 || arr.length === i + 1) {
+            arr.splice(1);
+            return curr + 1;
+        }
+        return acc;
+        }, 1);
+   } 
    async addMessage(myEmail,message){
     if(!message){
         return false;
@@ -78,12 +119,11 @@ class Message {
          return  true;
     }
    }
-   async getAllReceivedEmails(myUsername){
+   async getAllReceivedEmails(userId){
      // Fetch all Inbox Messages which their receiverId is equal to my UserId 
      // (1) get UserId by username which is user email 'myUsername'
      // (2) Go in Inbox and search where message.receiverId === userId
      // (3) then use Inbox messageId to search and get message details from all messages 
-     let userId = await user.getUserIdByEmail(myUsername);
      let received_messages=[];  
      if(!userId){
          return received_messages;
@@ -113,12 +153,11 @@ class Message {
      }
     
    }
-   async geAlltUnReadReceivedMessages(myUsername){
+   async geAlltUnReadReceivedMessages(userId){
      // Fetch all Inbox Messages which their receiverId is equal to my UserId and status is still sent not read
      // (1) get UserId by username which is user email 'myUsername'
      // (2) Go in Inbox and search where message.receiverId === userId
      // (3) then use Inbox messageId to search and get details of messages which their status is still sent not read, from all messages
-        let userId = await user.getUserIdByEmail(myUsername);
         let unread_received_messages=[];  
         if(!userId){
             return [];
@@ -149,13 +188,11 @@ class Message {
      return unread_received_messages;
     }
    }
-   async getAllSentMessages(myUsername){
+   async getAllSentMessages(userId){
      // Fetch all Sent Messages which their senderId is equal to my UserId 
      // (1) get UserId by username which is user email 'myUsername'
      // (2) Go in Sent and search where message.senderId === userId
      // (3) then use Sent messageId to search and get details of messages from all messages
-       
-      let userId = await user.getUserIdByEmail(myUsername);
       let sent_message =[];
 
       if(!userId){
@@ -188,11 +225,10 @@ class Message {
           return sent_message;
       }
    }
-   async getMessage(myUsername,id){
+   async getMessage(userId,id){
     //Before send the requested message to the user
     //We have to detemine whether user is the sender 
     //Or receiver of the message
-    let userId = await user.getUserIdByEmail(myUsername);  
     if(!userId){
         return [];
     }else{
@@ -217,11 +253,10 @@ class Message {
         } 
     }
    }
-   async deleteMessage(myUsername,id){
+   async deleteMessage(userId,id){
     //Before selete message
     //We have to detemine whether user is the sender 
-    //Or receiver of the message
-        let userId = await user.getUserIdByEmail(myUsername);   
+    //Or receiver of the message   
         const msg = this.MessagesList.find((message) => message.id == id);
         
         if(msg.senderId == userId || msg.receiverId == userId){

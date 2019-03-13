@@ -11,6 +11,7 @@ describe('Contact', () => {
     });
     afterEach(() => {
         jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+        console.log("Is Test Running !!!!"+ process.env.IS_TESTING);
     })
 
     describe('Contacts Model', () => {

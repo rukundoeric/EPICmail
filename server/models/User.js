@@ -4,38 +4,21 @@ class UserModel  {
         this.data ={"type":"dataList"}
         this.UserList = [
             {
-                "id": 6,
-                "email": "ericrukundo005@gmail.com",
-                "firstName": "eric",
-                "lastName": "prestein",
-                "password": "$2b$06$HTuyK0.fOgtMp.0KZ5zPT.6ipcrlUjmj47AkhQD9MxnX0syqoHdGG",
-                "createdOn": "2019-03-05T03:21:04.694Z"
+                "id": "a5fb0450-2da1-4278-ba0f-8b930604b976",
+                "email": "ericrukundo@gmail.comm",
+                "firstName": "Eric",
+                "lastName": "Prestein",
+                "password": "$2b$06$22OG7NCqEyfZnWPfa1W7cOv4WJGBc2UApmwQFWMGb8P/QWL1DkB5y",
+                "createdOn": "2019-03-13T11:39:26.470Z"
             },
             {
-                "id": 2,
-                "email": "elvis005@gmail.com",
-                "firstName": "eric",
-                "lastName": "prestein",
-                "password": "$2b$06$Mo6miuQ3./kaMV46FkuYZ.QZBgSZAPub3jI/9H2CNWAMFryCVAUhm",
-                "createdOn": "2019-03-04T00:49:24.841Z"
-            },
-            {
-                "id": 1,
-                "email": "greprestein005@gmail.com",
-                "firstName": "Mugabo",
-                "lastName": "Steve",
-                "password": "$2b$06$Mo6miuQ3./kaMV46FkuYZ.QZBgSZAPub3jI/9H2CNWAMFryCVAUhm",
-                "createdOn": "2019-03-04T00:49:24.841Z"
-            },
-            {
-                "id": 3,
-                "email": "mugisha005@gmail.com",
-                "firstName": "eric",
-                "lastName": "prestein",
-                "password": "$2b$06$Mo6miuQ3./kaMV46FkuYZ.QZBgSZAPub3jI/9H2CNWAMFryCVAUhm",
-                "createdOn": "2019-03-04T00:49:24.841Z"
-            }              
-        ]
+                "id": "b1fa330c-e2d0-43ca-a6d0-6c461e80c7ad",
+                "email": "ericprestein@gmail.com",
+                "firstName": "prestein",
+                "lastName": "eistein",
+                "password": "$2b$06$gIgQFKPhux2nnr0pRgJVIuVQr69oR2L.MIWpbaFQuIL9blamJShmm",
+                "createdOn": "2019-03-12T20:35:26.771Z"
+            }]
     }
     async addUser(user){
         if(!user){

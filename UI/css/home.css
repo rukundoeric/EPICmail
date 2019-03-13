@@ -309,7 +309,7 @@ table{
 .task-content{
 	padding: 15px;
 	margin-left: 10px;
-	width: 96%;
+	width: 98%;
 	height: 100%;
 	border-color: var(--rayol-primary-color);
 	background-color:  var(--rayal-white);
@@ -519,3 +519,98 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+.footer-area {
+	background-color: var(--rayol-primary-color);
+	padding: 40px;
+	position: relative;
+	z-index: 1000;
+	min-height:100px;
+	border-width: 1px 0 0;
+	-webkit-box-shadow:0px 0px 8px var(--rayal-white-borders);
+	-moz-box-shadow:0px 0px 8px var(--rayal-white-borders);
+  }
+  .c-y-c-contact.title{
+	  color:  var(--rayal-white);
+	  font-size: 20px;
+	  font-style: normal;
+  }
+  .col-y-content.contact{
+	  float: right;
+  }
+  .footer-icon{
+	  margin: 5px;
+	  width: 25px;
+	  height: 22px;
+	  fill-opacity:1;
+	  stroke:none;
+	  fill-rule:nonzero;
+  }
+  .footer-icon.facebook{
+	  fill:  var(--rayal-white);
+  }
+  .footer-icon.instagram{
+	  fill:  var(--rayol-orange-color);
+  }
+  .footer-icon.twitter
+  {
+	  fill: var(--rayol-dark-red-color);
+  }
+  .footer-icon.google
+  {
+	  fill: var(--rayal-light-green-color);
+  }
+  .footer-icon.tumbr{
+	 fill:  var(--rayal-white);
+  }
+  .footer-icon.vk
+  {
+	  fill:  var(--rayol-orange-color);
+  }
+  
+  .col-x-content{
+	  margin-left: 20px;
+  }
+  .footer-area .footer-single-widget .copywrite-text p {
+	  color: var(--rayal-white);
+	  margin-bottom: 0;
+   }
+  .f-menu-list{
+	  margin: 10px;
+	  float: left;
+  }
+  .f-menu-header{
+	  text-decoration: none;
+	  color: var(--rayal-white);
+	  font-size: 15px;
+  }
+  .footer_links_color{
+	 color: white;
+  }
+  li{
+	  font-size: 10px;
+  }
+  .col-y-content a{
+	  text-decoration: none;
+	  color: var(--rayal-gray-color);
+  }
+  .col-y-content a:hover{
+	  text-decoration: none;
+	  color: var(--rayol-primary-color);
+  }
+  .col-y-content
+  {
+	  width: 30%;
+	  float: left;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+	  outline: none;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus{
+	border-width: var(--field-border-radius);
+	border-color: var(--rayal-light-green-color);
+  }

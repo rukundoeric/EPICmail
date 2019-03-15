@@ -11,11 +11,16 @@ process.env.IS_TESTING = 'FALSE';
 const swaggerDocument = yamljs.load('server/config/docs.yml');
 const app = express();
 const PORT = process.env.PORT || 7070;
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(bodyParcer.json());
 app.use(bodyParcer.urlencoded({ extended: false }));
 app.use('/',User);
 app.use('/',Message);
-app.use('/', swagger.serve, swagger.setup(swaggerDocument));
+app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
 app.use((err, req, res, next) => {
     res.status(err.status || ST.INTERNAL_S_E);
     res.json({

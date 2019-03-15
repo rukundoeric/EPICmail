@@ -1,13 +1,21 @@
 import bcrypt from 'bcrypt';
 import moment from 'moment';
 const hostUrl = 'http://127.0.0.1:4040';
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVyaWNydWt1bmRvMDA1QGdtYWlsLmNvbSIsImlhdCI6MTU1MTkzMzIwNywiZXhwIjoxNTUzNjYxMjA3fQ.27DB7Rxr9hk_PBUvn7pdEkawNerxM-FB8ufTDrgPXf8';
+const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJhNWZiMDQ1MC0yZGExLTQyNzgtYmEwZi04YjkzMDYwNGI5NzYiLCJpYXQiOjE1NTI2MjIyNjMsImV4cCI6MTU1MzIyNzA2M30.U2onI1zHNJyBtri5qc8HlTM6xYc79xxvSbr3qY48Pvw';
 const userData =  {
-    "id": 6,
-	"email": "ericrukundo005@gmail.com",
-	"firstName": "eric",
-	"lastName": "prestein",
-	"password": "13085211"
+        "id": "a5fb0450-2da1-4278-ba0f-8b930604b976",
+        "email": "ericrukundo@gmail.com",
+        "firstName": "Eric",
+        "lastName": "Prestein",
+        "password": "Eric00005",
+        "createdOn": "2019-03-13T11:39:26.470Z"
+    
+}
+const newUser =  {
+    "email": "mukunzifelix@gmail.com",
+    "firstName": "Mukunzi",
+    "lastName": "Felix",
+    "password": "Eric00005",
 }
 const userDetail = {
     "id": 6,
@@ -18,8 +26,8 @@ const userDetail = {
     "createdOn": "2019-03-05T03:21:04.694Z"
 }
 const loginUser = {
-    "email":"ericrukundo005@gmail.com",
-    "password": "13085211"
+        "email": "ericrukundo@gmail.com",
+        "password": "Eric00005"
 }
 const loginUserWrongPass = {
     "email":"ericrukundo005@gmail.com",
@@ -40,12 +48,9 @@ const sent = {
     "createdOn":moment(new Date())
 }    
 const message =   {
-    "id": 2,
-    "subject": "Invitation to mariage",
-    "senderId":1,
-    "receiverId":3,
-    "message": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!",
-    "parentMessageId": "1",
+    "subject": "Invitaion to mariage",
+    "message": "Hello there ",
+    "to": "ericrukundo@gmail.com",
     "status": "sent"
 }
 const invalid_message =   {
@@ -86,5 +91,6 @@ export {
     message,
     group,
     groupmember,
-    contact
+    contact,
+    newUser
 }

@@ -47,3 +47,14 @@ Below are the colletion of routes.
 * node js
 * Express
 
+## Installation
+* clone this Repo https://github.com/rukundoeric/EPICmail
+* Run `cd EPICmail` to navigation to project directory 
+* Run `npm install` to install all packages
+* Run `node server/config/start.js` to start the server
+* And then Test with Postman
+
+## Licence
+MIT
+
+Copyright(c) 2019 Rukundo Eric

@@ -26,7 +26,7 @@ class Auth {
 
     }
     async generateToken(user) {
-       const token = jwt.sign({userid: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+       const token = jwt.sign({userid: user.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
        return token;
     }
     async getIdfromToken(token){

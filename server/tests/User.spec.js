@@ -1,7 +1,7 @@
 import Request from 'request';
 import run from '../config/server';
 import UserModel from '../models/User';
-import {hostUrl, userDetail, loginUser,userData ,userToken, loginUserWrongPass} from './data/data';
+import {hostUrl, userDetail, loginUser,userData ,userToken, loginUserWrongPass, newUser} from './data/data';
 import {apiUrlv1authLogin, apiUrlv1authSignup} from '../helpers/const'
 import Message from '../models/Message';
 import User from '../controllers/User';
@@ -100,7 +100,7 @@ describe('User', () => {
        describe('POST User Signup /auth/signup',() => {  
            it('Should Return an Object with status 201 and property token when created user succesful', (done) => {
             Request.post(`${hostUrl}${apiUrlv1authSignup}`,
-            {json:true, form: userData},(err, res, body) => {
+            {json:true, form: newUser},(err, res, body) => {
                 if(!err){
                     expect(body.data).toBeDefined();
                     expect(body.status).toBe(201);
@@ -113,9 +113,7 @@ describe('User', () => {
        describe('POST User Login /auth/login',() => {   
             it('Should Return an Object with status 200 when User Login Succesful', (done) => {
                 Request.post(`${hostUrl}${apiUrlv1authLogin}`,
-                {json:true, headers: {
-                    Authorization: `Bearer ${userToken}`,
-                  }, form: loginUser},(err, res, body) => {
+                {json:true, form: loginUser},(err, res, body) => {
                     if(!err){
                         expect(body.status).toBe(200);
                         expect(body.data).toBeDefined();
@@ -126,12 +124,10 @@ describe('User', () => {
             })
             it('Should Return an Object with status 400 when null Inputs', (done) => {
                 Request.post(`${hostUrl}${apiUrlv1authLogin}`,
-                {json:true, headers: {
-                    'Authorisation' : `${userToken}`,
-                  }, form: {email:null,password:null}},(err, res, body) => {
+                {json:true,form: {}},(err, res, body) => {
                     if(!err){
                         expect(body.status).toBe(400);
-                        expect(body.message).toBeDefined();
+                        expect(body.error).toBeDefined();
                     }
                     done();
                 })
@@ -139,12 +135,10 @@ describe('User', () => {
             })
             it('Should Return an Object with status 400 when invalid email', (done) => {
                 Request.post(`${hostUrl}${apiUrlv1authLogin}`,
-                {json:true, headers: {
-                    'Authorisation' : `${userToken}`,
-                  }, form: {email:'ericprestrein',password:'130852'}},(err, res, body) => {
+                {json:true, form: {email:'ericprestrein',password:'130852'}},(err, res, body) => {
                     if(!err){
                         expect(body.status).toBe(400);
-                        expect(body.message).toBeDefined();
+                        expect(body.error).toBeDefined();
                     }
                     done();
                 })
@@ -152,12 +146,10 @@ describe('User', () => {
             })
             it('Should Return an Object with status 404 when email not found', (done) => {
                 Request.post(`${hostUrl}${apiUrlv1authLogin}`,
-                {json:true, headers: {
-                    'Authorisation' : `${userToken}`,
-                  }, form: {email:'ericmakuza@gmail.com',password:'130852'}},(err, res, body) => {
+                {json:true, form: {email:'ericmakuza@gmail.com',password:'130852'}},(err, res, body) => {
                     if(!err){
-                        expect(body.status).toBe(404);
-                        expect(body.message).toBeDefined();
+                        expect(body.status).toBe(400);
+                        expect(body.error).toBeDefined();
                     }
                     done();
                 })
@@ -165,12 +157,10 @@ describe('User', () => {
             })
             it('Should Return an Object with status 200 and property message when password is wrong', (done) => {
                 Request.post(`${hostUrl}${apiUrlv1authLogin}`,
-                {json:true, headers: {
-                    'Authorisation' : `${userToken}`,
-                  }, form: loginUserWrongPass},(err, res, body) => {
+                {json:true,form: loginUserWrongPass},(err, res, body) => {
                     if(!err){
-                        expect(body.status).toBe(200);
-                        expect(body.message).toBeDefined();
+                        expect(body.status).toBe(400);
+                        expect(body.error).toBeDefined();
                     }
                     done();
                 })

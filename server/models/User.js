@@ -5,7 +5,7 @@ class UserModel  {
         this.UserList = [
             {
                 "id": "a5fb0450-2da1-4278-ba0f-8b930604b976",
-                "email": "ericrukundo@gmail.comm",
+                "email": "ericrukundo@gmail.com",
                 "firstName": "Eric",
                 "lastName": "Prestein",
                 "password": "$2b$06$22OG7NCqEyfZnWPfa1W7cOv4WJGBc2UApmwQFWMGb8P/QWL1DkB5y",

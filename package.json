@@ -8,7 +8,7 @@
     "node": "10.15.1"
   },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text babel-node server/tests/runner.js",
+    "test": "babel-node server/tests/runner.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "start": "node config/start.js",
     "heroku-postbuild": "npm install --production"
@@ -39,10 +39,12 @@
     "heroku-pg-extras": "^1.2.0",
     "jasmine": "^3.3.1",
     "jasmine-console-reporter": "^3.1.0",
+    "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.0",
     "moment": "^2.24.0",
     "nyc": "^13.3.0",
     "path": "^0.12.7",
+    "pg": "^7.8.2",
     "request": "^2.88.0",
     "swagger-ui-express": "^4.0.2",
     "travis": "^0.1.1",

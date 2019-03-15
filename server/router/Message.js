@@ -1,7 +1,6 @@
 import express from 'express';
 import auth from '../middleware/auth';
 import message from '../controllers/Message'
-import messagedb from '../db/controllers/Messages'
 import {apiUrlv1messages, apiUrlv1messagesUnread,apiUrlv1messagesSent, apiUrlv1messagesAction,
     apiUrlv2messages, apiUrlv2messagesUnread,apiUrlv2messagesSent, apiUrlv2messagesAction} from '../helpers/const'
 const router = express.Router();

@@ -9,7 +9,7 @@ export default {
     MSG_DATA_INVALID_EMAIL : {'message':'Invalid Email'},
     MSG_USER_ALREAD_EXIST : {'message':'User already exists'},
     MSG_DATA_WEAK_PASSWORD : {'message':'Password is weak'},
-    MSG_PRGS_MESSAGE_DELETE :{"message":"Unfortunatly!! You are not sender or receiver of this message, so you can not delete it."},
+    MSG_PRGS_MESSAGE_DELETE :{"message":"Unfortunately!! You are not sender or receiver of this message, so you can not delete it."},
     MSG_DEL_SUCCESSFUL : {"message":"Message Deleted Successful "},
-    MSG_PRGS_MESSAGE_VIEW : {"message":"Unfortunatly!! You are not sender or receiver of this message, so you can not open it."}  
+    MSG_PRGS_MESSAGE_VIEW : {"message":"Unfortunately!! You are not sender or receiver of this message, so you can not open it."}  
 }

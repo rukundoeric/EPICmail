@@ -2,9 +2,8 @@ import Request from 'request';
 import run from '../config/server';
 import UserModel from '../models/User';
 import {hostUrl, userDetail, loginUser,userData ,userToken, loginUserWrongPass, newUser} from './data/data';
-import {apiUrlv1authLogin, apiUrlv1authSignup} from '../helpers/const'
-import Message from '../models/Message';
-import User from '../controllers/User';
+import {apiUrlv1authLogin, apiUrlv1authSignup} from '../helpers/const';
+import Helper from '../helpers/Helper';
 describe('User', () => {
     var originalTimeout;
     beforeEach(() => {
@@ -26,6 +25,24 @@ describe('User', () => {
                 expect(res).toBe(true);
                 done();
             }).catch(() => done());
+        })
+        it('Should not create User',(done) => {
+            UserModel.addUser({}).then((res) => {
+                expect(res).toBe(true);
+                done();
+            }).catch(() => done());
+            UserModel.addUser({"id": "a5fb0450-2da1-4278-ba0f-8b930604b976",
+            "email": "ericrukundo@gmail.com",
+            "firstName": "Eric",
+            "lastName": "Prestein",
+            "password": "$2b$06$22OG7NCqEyfZnWPfa1W7cOv4WJGBc2UApmwQFWMGb8P/QWL1DkB5y",
+            "createdOn": "2019-03-13T11:39:26.470Z"}).then((res) => {
+                expect(res).toBe(true);
+                done();
+            }).catch(() => done());
+        })
+        it('Should not login', (done) => {
+            
         })
         it('Should Return an Object, when user exist <Search by Email>',(done) => {
             UserModel.getUserByEmail('ericrukundo005@gmail.com').then((res) => {
@@ -84,7 +101,14 @@ describe('User', () => {
                 done();
             }).catch(() => done())    
         })
-    
+        it('Shouls return true', (done) => {
+            expect(Helper.isValidEmail('example@gmail.com')).toBe(true);
+            done();
+        })
+        it('Shouls return flase', (done) => {
+            expect(Helper.isValidEmail('examplegmailcom')).toBe(false);
+            done();
+        })
     })
     
    describe('User Routers', () => {

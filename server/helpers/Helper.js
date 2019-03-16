@@ -4,12 +4,6 @@ class Helper {
    constructor(){
        dotenv.config();
        this.bcrpt = bcrpt;
-       this.isStrongPassword = password => {
-        // at least one number, one lowercase and one uppercase letter
-        // at least six characters that are letters, numbers or the underscore
-        var st_pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/;
-        return st_pass.test(password);
-       }
        this.isValidEmail = email => {
         return /\S+@\S+\.\S+/.test(email);
        } 

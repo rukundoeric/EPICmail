@@ -22,7 +22,8 @@ const CREATE_USER =
       users(id, firstName, lastName, email, password, createdOn, modifiedOn, verified)
       VALUES($1, $2, $3, $4, $5,$6, $7, $8)
       returning *`;
-const GET_USER = `SELECT * FROM users WHERE email = $1`;        
+const GET_USER = `SELECT * FROM users WHERE email = $1`;  
+const GET_USER_BY_ID = `SELECT * FROM users WHERE id = $1`;       
 const VERIFIE_USER =`UPDATE users SET verified=true WHERE email = $1`      
 const CREATE_VERFICATION =
   `INSERT INTO

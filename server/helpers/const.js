@@ -14,6 +14,7 @@ let apiUrlv1messagesAction = `${apiUrlv1messages}/:id`
 let apiUrlv2auth =`${apiUrlv2}/auth`
 let apiUrlv2authLogin =`${apiUrlv2auth}/login`
 let apiUrlv2authSignup =`${apiUrlv2auth}/signup`
+let apiUrlv2authVerification = `${apiUrlv2auth}/verifier`
 let apiUrlv2messages =`${apiUrlv2}/messages`
 let apiUrlv2messagesUnread = `${apiUrlv2messages}/unread`
 let apiUrlv2messagesSent = `${apiUrlv2messages}/sent`
@@ -26,7 +27,7 @@ apiUrlv1messages,
 apiUrlv1messagesUnread,
 apiUrlv1messagesSent,
 apiUrlv1messagesAction,
-
+apiUrlv2authVerification,
 apiUrlv2authLogin,
 apiUrlv2authSignup,
 apiUrlv2messages,

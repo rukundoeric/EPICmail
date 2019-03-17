@@ -1,5 +1,6 @@
 // Update with your config settings.
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 export default {
     development: {
             host: '127.0.0.1',

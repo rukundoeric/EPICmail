@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
-import { pool } from '../connection/connection';
+const pool   = require('../connection/connection').getPoolCon();
 class User {
      constructor(){
-         this.con = pool;
+        // this.con = connection.getPoolCon();
      }
      async checkcon(req, res){
          console.log("Connection Gonna be started...")
-         this.con.connect((err) => {
+         pool.connect((err) => {
              if(!err){
                  console.log("Connected succeful");
              }

@@ -52,9 +52,9 @@ class User {
                 });
           }else{
               if(rows[0].code == req.body.code){
-                  await db.query(DELETE_VERIFICATION,[req.body.email]);
-                  await db.query(VERIFIE_USER,[req.body.email]);
-                  const { rows } = await db.query(GET_USER,[req.body.email]);
+                  db.query(DELETE_VERIFICATION,[req.body.email]);
+                  db.query(VERIFIE_USER,[req.body.email]);
+                  const { rows } = db.query(GET_USER,[req.body.email]);
                   const token = auth.generateToken(rows[0].id);
                   res.status(ST.CREATED).send({
                     "status": ST.CREATED,

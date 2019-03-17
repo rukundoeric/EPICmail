@@ -44,7 +44,7 @@ class User {
      } 
      async account_verification(req, res){
       joi.validate(req.body, validation.Validator.verificationSchema).then((result) => {
-          const { rows } = await db.query(GET_VERIFICATION, [req.body.email]);
+          const { rows } = db.query(GET_VERIFICATION, [req.body.email]);
           if(!rows[0]){
                 res.status(ST.BAD_REQUEST).send({
                   "status": ST.BAD_REQUEST,

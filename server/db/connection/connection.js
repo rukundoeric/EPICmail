@@ -1,11 +1,10 @@
 import { Pool } from  'pg';
 import dotenv from 'dotenv';
-import con from './con_file';
 dotenv.config();
 const environment = process.env.NODE_ENV || 'development';
-const config = con[environment];
+const config = require('./con_file')[environment];
 export default {
-	pool : function () {
-       return new Pool(config);
-	}
+	getPoolCon: function () {
+	  return new Pool(config);
+       }
 }

@@ -4,6 +4,7 @@ import User from '../router/User';
 import Message from '../router/Message';
 import bodyParcer from 'body-parser';
 import dotenv from 'dotenv';
+import db from '../db/migration/db';
 import swagger from 'swagger-ui-express';
 import yamljs from 'yamljs';
 dotenv.config();

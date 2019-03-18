@@ -12,5 +12,5 @@ router.get('/testCon', verfic.sendVerification);
 //API version2
 router.post(`${apiUrlv2authSignup}`, dbUser.signup,verfic.sendVerification);
 router.post(`${apiUrlv2authVerification}`, dbUser.account_verification);
-// router.post(`${apiUrlv2authLogin}`, userdb.login);
+router.post(`${apiUrlv2authLogin}`, dbUser.login);
 export default router;

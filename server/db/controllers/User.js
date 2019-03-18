@@ -18,7 +18,7 @@ class User {
      async signup(req, res, next){
         joi.validate(req.body, validation.Validator.userSchema).then((result) => {
             try{
-              Helper.hashPassword(req.body.password).then((pass) => {
+                Helper.hashPassword(req.body.password).then((pass) => {
                     let code = verification_code(8, {type: 'number'}); 
                     const values = [uuidv4(),req.body.firstName,req.body.lastName,req.body.email,pass,moment(new Date()),moment(new Date()),false];
                     const v_values =[req.body.email,code];
@@ -80,6 +80,39 @@ class User {
                 })
               }
       });
+     }
+     async login(req, res){
+        joi.validate(req.body, validation.Validator.loginSchema).then((result) => {
+            db.query(GET_USER, [req.body.email]).then((user) => {
+              if(!user.rows[0]){
+                  return res.status(ST.NOT_FOUND).send({
+                    "status": ST.NOT_FOUND,
+                    "error": {"message":"User not registered"}
+                  })
+              }else{
+                  Helper.isCorrestPassword(req.body.password, user.rows[0].password).then((result) => {
+                      if(result){
+                        auth.generateToken(user.rows[0].id).then((token) => {
+                          res.status(ST.OK).send({
+                            "status": ST.OK,
+                            "data": {
+                              "message":"User logged in successfuly", 
+                              "token":token}
+                          });
+                        }); 
+                      }else{
+                          return res.status(ST.BAD_REQUEST).send({
+                            "status": ST.BAD_REQUEST,
+                            "error": {"message":"Incorrect password"}
+                          });
+                      }
+                  })
+              }
+            })     
+        }).catch(error => res.send({
+          "status": 400,
+          "error" : {"message": error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
+        }));
      }
 }
 export default new User();

@@ -3,7 +3,9 @@ import dotenv from 'dotenv';
 import ST from '../../helpers/status';
 import handlebars from 'handlebars';
 import fs from 'fs';
+import { verification_link_development, verification_link_production } from '../../helpers/const'
 dotenv.config();
+const link = process.env.NODE_ENV ? verification_link_production : verification_link_development;  
  class verfication{
       constructor(){
       }
@@ -29,14 +31,14 @@ dotenv.config();
             readHTMLFile(__dirname + '../../../../UI/html/verification.html', function(err, html) {
                 var template = handlebars.compile(html);
                 var replacements = {
-                    code: `${req.mail.v_code}`
+                    link: `${link}/${req.mail.email}/${req.mail.v_code}`
                 };
                 var htmlToSend = template(replacements);
                 let mailOptions = {
                     from: `EPICmail`, 
                     to: `${req.mail.email}`, 
                     subject: " Verification", 
-                    text: `${req.mail.v_code}`, 
+                    text: `${link}/${req.mail.email}/${req.mail.v_code}`, 
                     html:  htmlToSend 
                 };
                 transport.sendMail(mailOptions, (error, info) => {

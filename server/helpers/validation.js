@@ -23,7 +23,7 @@ class Validation {
             }),
             verificationSchema: joi.object().keys({
                 email: joi.string().email().required(),
-                code:  joi.string().regex(/^[0-9]+$/).min(8).required(),
+                code:  joi.string().regex(/^[0-9]+$/).min(5).required(),
             }),
         } 
     }

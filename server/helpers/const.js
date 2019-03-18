@@ -14,11 +14,15 @@ let apiUrlv1messagesAction = `${apiUrlv1messages}/:id`
 let apiUrlv2auth =`${apiUrlv2}/auth`
 let apiUrlv2authLogin =`${apiUrlv2auth}/login`
 let apiUrlv2authSignup =`${apiUrlv2auth}/signup`
-let apiUrlv2authVerification = `${apiUrlv2auth}/verifier`
+let apiUrlv2authVerification = `${apiUrlv2authSignup}/:email/:code`
 let apiUrlv2messages =`${apiUrlv2}/messages`
 let apiUrlv2messagesUnread = `${apiUrlv2messages}/unread`
 let apiUrlv2messagesSent = `${apiUrlv2messages}/sent`
 let apiUrlv2messagesAction = `${apiUrlv2messages}/:id`
+
+// Acccount Verification
+let verification_link_development = `http://localhost:7070/api/v2/auth/signup`;
+let verification_link_production = `https://epicmaileric.herokuapp.com/api/v2/auth/signup`
 
 export {
 apiUrlv1authLogin,
@@ -33,5 +37,7 @@ apiUrlv2authSignup,
 apiUrlv2messages,
 apiUrlv2messagesUnread,
 apiUrlv2messagesSent,
-apiUrlv2messagesAction
+apiUrlv2messagesAction,
+verification_link_development,
+verification_link_production
 }

@@ -41,9 +41,6 @@ describe('User', () => {
                 done();
             }).catch(() => done());
         })
-        it('Should not login', (done) => {
-            
-        })
         it('Should Return an Object, when user exist <Search by Email>',(done) => {
             UserModel.getUserByEmail('ericrukundo005@gmail.com').then((res) => {
             expect(res).toBeDefined();

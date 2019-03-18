@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { GET_USER_BY_ID } from '../helpers/query';
 import ST from '../../helpers/status';
-import MSG from '../helpers/res_messages';
+import MSG from '../../helpers/res_messages';
 class Auth {
     constructor(){
         dotenv.config();

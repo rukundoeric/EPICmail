@@ -10,7 +10,7 @@ const CREATE_USER_TABLE =
       modifiedOn TIMESTAMP,
       verified BOOLEAN  NOT NULL
     )`;
-    const VERIFICATIONS_TABLE =
+const VERIFICATIONS_TABLE =
   `CREATE TABLE IF NOT EXISTS
     verification(
       id SERIAL  PRIMARY KEY,

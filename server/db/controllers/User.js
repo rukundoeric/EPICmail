@@ -5,7 +5,7 @@ import verification_code from 'generate-sms-verification-code';
 import ST from '../../helpers/status';
 import MSG from '../../helpers/res_messages';
 import auth from '../middleware/auth' 
-import { CREATE_USER_TABLE, CREATE_USER , CREATE_VERFICATION,VERIFICATIONS_TABLE,GET_VERIFICATION,DELETE_VERIFICATION,VERIFIE_USER} from '../helpers/query';
+import { CREATE_USER_TABLE, CREATE_USER ,VERIFIE_USER, GET_USER, GET_VERIFICATION, CREATE_VERFICATION,DELETE_VERIFICATION} from '../helpers/query';
 import connection from '../connection/connection';
 import joi from 'joi';
 import Helper from '../../helpers/Helper';
@@ -21,12 +21,12 @@ class User {
               Helper.hashPassword(req.body.password).then((pass) => {
                     let code = verification_code(8, {type: 'number'}); 
                     const values = [uuidv4(),req.body.firstName,req.body.lastName,req.body.email,pass,moment(new Date()),moment(new Date()),false];
-                    const v_values = [req.body.email,code];
+                    const v_values =[req.body.email,code];
                     db.query(CREATE_USER, values).then(() => {
-                        db.query(CREATE_VERFICATION,v_values).then(() => {
-                           req.mail={v_code: code,email:req.body.email}
-                           next();
-                        });
+                      db.query(CREATE_VERFICATION, v_values).then((result) => {
+                         req.mail={v_code: code,email:req.body.email}
+                         next();
+                      })
                     });
                 })
               }catch(error){
@@ -43,34 +43,43 @@ class User {
       }));
      } 
      async account_verification(req, res){
-      joi.validate(req.body, validation.Validator.verificationSchema).then((result) => {
-          const { rows } = db.query(GET_VERIFICATION, [req.body.email]);
-          if(!rows[0]){
-                res.status(ST.BAD_REQUEST).send({
-                  "status": ST.BAD_REQUEST,
-                  "error": {"message":"Please signup to get verification code"}
-                });
-          }else{
-              if(rows[0].code == req.body.code){
-                  db.query(DELETE_VERIFICATION,[req.body.email]);
-                  db.query(VERIFIE_USER,[req.body.email]);
-                  const { rows } = db.query(GET_USER,[req.body.email]);
-                  const token = auth.generateToken(rows[0].id);
-                  res.status(ST.CREATED).send({
-                    "status": ST.CREATED,
-                    "data": {"token":token}
-                  });
-              }else{
+      db.query(GET_USER, [req.params.email]).then((user) => {
+              if(!user.rows[0]){
                   res.status(ST.BAD_REQUEST).send({
                     "status": ST.BAD_REQUEST,
-                    "error": {"message":"Incorrect verification code"}
+                    "error": {"message":"User not verified"}
                   });
+              }else{
+                db.query(GET_VERIFICATION, [req.params.email]).then((verfication) => {
+                   if(!verfication.rows[0]){
+                      res.status(ST.BAD_REQUEST).send({
+                        "status": ST.BAD_REQUEST,
+                        "error": {"message":"Invalid Verification"}
+                      });
+                   }else{
+                      if(verfication.rows[0].code == req.params.code){
+                        db.query(VERIFIE_USER,[req.params.email]).then((result) => {
+                          db.query(DELETE_VERIFICATION, [req.params.email]).then((result) => {
+                              auth.generateToken(user.rows[0].id).then((token) => {
+                                  res.status(ST.CREATED).send({
+                                    "status": ST.CREATED,
+                                    "data": {
+                                      "message":"Account verified successfuly", 
+                                      "token":token}
+                                  });
+                              }); 
+                          }) 
+                        });
+                      }else{
+                        res.status(ST.BAD_REQUEST).send({
+                          "status": ST.BAD_REQUEST,
+                          "error": {"message":"Invalid Verification"}
+                        });
+                      }
+                   }
+                })
               }
-          }
-      }).catch(error => res.status(ST.BAD_REQUEST).send({
-          "status": ST.BAD_REQUEST,
-          "error": {"message": error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
-      }));
+      });
      }
 }
 export default new User();

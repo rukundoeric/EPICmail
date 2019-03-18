@@ -18,24 +18,24 @@ class User {
      async signup(req, res, next){
         joi.validate(req.body, validation.Validator.userSchema).then((result) => {
             try{
-              if(Helper.isStrongPassword(req.body.password)){
-                  Helper.hashPassword(req.body.password).then((pass) => {
-                    let code = verification_code(8, {type: 'number'}); 
-                    const values = [uuidv4(),req.body.firstName,req.body.lastName,req.body.email,pass,moment(new Date()),moment(new Date()),false];
-                    const v_values =[req.body.email,code];
-                    db.query(CREATE_USER, values).then(() => {
-                      db.query(CREATE_VERFICATION, v_values).then((result) => {
-                        req.mail={v_code: code,email:req.body.email}
-                        next();
-                      })
-                    });
-                  })
-              }else{
-                  return res.status(ST.BAD_REQUEST).send({
-                    "status": ST.BAD_REQUEST,
-                    "error": {"message":"Weak password"}
-                  })
-              }
+                if(Helper.isStrongPassword(req.body.password)){
+                    Helper.hashPassword(req.body.password).then((pass) => {
+                      let code = verification_code(8, {type: 'number'}); 
+                      const values = [uuidv4(),req.body.firstName,req.body.lastName,req.body.email,pass,moment(new Date()),moment(new Date()),false];
+                      const v_values =[req.body.email,code];
+                      db.query(CREATE_USER, values).then(() => {
+                        db.query(CREATE_VERFICATION, v_values).then((result) => {
+                          req.mail={v_code: code,email:req.body.email}
+                          next();
+                        })
+                      });
+                    })
+                }else{
+                    return res.status(ST.BAD_REQUEST).send({
+                      "status": ST.BAD_REQUEST,
+                      "error": {"message":"Weak password"}
+                    })
+                }
               }catch(error){
                   if (error.routine === '_bt_check_unique') {
                     return res.status(ST.BAD_REQUEST).send({

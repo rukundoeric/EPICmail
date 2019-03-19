@@ -19,5 +19,6 @@ router.delete(`${apiUrlv1messagesAction}`,auth.verifyToken, message.deleteMessag
  router.get(`${apiUrlv2messagesUnread}`,authv2.verifyToken,messagedb.getAllUnReadReceivedMessage);
  router.get(`${apiUrlv2messagesSent}`,authv2.verifyToken,messagedb.getAllSentMessage);
  router.get(`${apiUrlv2messagesAction}`,authv2.verifyToken, messagedb.getMessage);
+ router.delete(`${apiUrlv2messagesAction}`,authv2.verifyToken, messagedb.deleteMessage);
 
 export default router;

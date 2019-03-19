@@ -96,7 +96,7 @@ class User {
               }else{
                   Helper.isCorrestPassword(req.body.password, user.rows[0].password).then((result) => {
                       if(result){
-                        auth.generateToken(user.rows[0].id).then((token) => {
+                        auth.generateToken(user.rows[0]).then((token) => {
                           res.status(ST.OK).send({
                             "status": ST.OK,
                             "data": {

@@ -41,6 +41,7 @@ const CREATE_MESSAGE_TABLE =
       subject VARCHAR(128) NOT NULL,
       message VARCHAR(1000) NOT NULL,
       parentMessageId NUMERIC (1000),
+      status VARCHAR(128) NOT NULL,
       createdOn TIMESTAMP
     )`;
     const CREATE_MESSAGE =
@@ -51,25 +52,25 @@ const CREATE_MESSAGE_TABLE =
 const CREATE_INBOX_TABLE =
     `CREATE TABLE IF NOT EXISTS
       inbox(
-        messageId NUMBER(10)  NOT NULL,
+        messageId NUMERIC (10)  NOT NULL,
         receiverId VARCHAR(128)  NOT NULL,
         createdOn TIMESTAMP
       )`;  
 const CREATE_INBOX =
         `INSERT INTO
-          messages(messageId, receiverId, createdOn)
+          inbox(messageId, receiverId, createdOn)
             VALUES($1, $2, $3)
             returning *`; 
 const CREATE_SENT_TABLE =
       `CREATE TABLE IF NOT EXISTS
         sent(
-          messageId NUMBER(10)  NOT NULL,
+          messageId NUMERIC (10)  NOT NULL,
           senderId VARCHAR(128)  NOT NULL,
           createdOn TIMESTAMP
         )`;  
 const CREATE_SENT =
         `INSERT INTO
-          messages(messageId, senderId, createdOn)
+        sent(messageId, senderId, createdOn)
             VALUES($1, $2, $3)
             returning *`;              
 export {

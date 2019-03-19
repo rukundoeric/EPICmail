@@ -6,9 +6,6 @@ import messageModal from '../models/Message';
 import moment from 'moment';
 import joi from 'joi';
 import validation from '../helpers/validation';
-import { STATUS_CODES } from 'http';
-
-
 class Message{
     constructor(){
       dotenv.config();
@@ -52,7 +49,7 @@ class Message{
                //If myUsername is underfined, means that token is invalid or 
                //expired, so you have to reauthenticate.
                res.status(ST.BAD_REQUEST).send({
-                   "status":STATUS_CODES.BAD_REQUEST,
+                   "status":ST.BAD_REQUEST,
                    "error": MSG.MSG_INVALID_TOKEN
                });
             }

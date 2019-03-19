@@ -1,10 +1,11 @@
 import dotenv from 'dotenv';
 import ST from '../../helpers/status';
-import MSG from '../../helpers/res_messages';
-import { CREATE_MESSAGE, CREATE_INBOX, CREATE_SENT } from '../helpers/query'
+import { CREATE_MESSAGE, CREATE_INBOX, CREATE_SENT,GET_USER } from '../helpers/query'
 import moment from 'moment';
 import joi from 'joi';
+import db from '../db'
 import validation from '../../helpers/validation';
+dotenv.config();
 class Message {
     constructor(){}
     async createMessage(req, res){
@@ -26,9 +27,9 @@ class Message {
                         moment(new Date())
                     ]
                     db.query(CREATE_MESSAGE, message).then((result) => {
-                        if([result.rows[0].id] != 'draft'){
-                            let inbox = [result.rows[0].id, result.rows[0].receiverId, moment(new Date())];
-                            let sent = [result.rows[0].id, result.rows[0].senderId, moment(new Date())];
+                        if([result.rows[0].status] != 'draft'){
+                            let inbox = [result.rows[0].id, result.rows[0].receiverid, moment(new Date())];
+                            let sent = [result.rows[0].id, result.rows[0].senderid, moment(new Date())];
                             db.query(CREATE_INBOX, inbox);
                             db.query(CREATE_SENT, sent);
                         }
@@ -41,7 +42,7 @@ class Message {
             })
         }).catch(error => res.send({
             "status": 400,
-            "error" : {"message": error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
+            "error" : {"message": error}
         }));
     }
 

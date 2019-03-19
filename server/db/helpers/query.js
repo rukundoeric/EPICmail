@@ -74,7 +74,8 @@ const CREATE_SENT =
             VALUES($1, $2, $3)
             returning *`;       
             
-const GET_RECEIVED_MESSAGES =`SELECT * FROM messages WHERE receiverid = $1`         
+const GET_RECEIVED_MESSAGES =`SELECT * FROM messages WHERE receiverid = $1`
+const GET_UNREAD_RECEIVED_MESSAGES =  `SELECT * FROM messages WHERE receiverid = $1 AND status = 'sent'`        
 export {
     CREATE_USER_TABLE,
     CREATE_MESSAGE_TABLE,
@@ -91,5 +92,6 @@ export {
     CREATE_INBOX,
     CREATE_SENT_TABLE,
     CREATE_SENT,
-    GET_RECEIVED_MESSAGES
+    GET_RECEIVED_MESSAGES,
+    GET_UNREAD_RECEIVED_MESSAGES
 }

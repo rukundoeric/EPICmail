@@ -98,11 +98,15 @@ const CREATE_GROUP_MEMBER_TABLE =
       memberid VARCHAR(128) NOT NULL,
       role VARCHAR(128) NOT NULL
     )`;
-    const CREATE_GROUP_MEMBER_RECORD =
+const CREATE_GROUP_MEMBER_RECORD =
     `INSERT INTO
     groupMember(groupid, memberid, role)
         VALUES($1, $2, $3)
         returning *`;  
+const GET_GROUP = `SELECT * FROM groups WHERE id = $1`         
+const GET_GROUP_MEMBER = `SELECT * FROM groupMember WHERE groupid = $1 AND memberid = $2`   
+const DELETE_GROUP =`DELETE FROM groups WHERE id = $1`  
+const DELETE_GROUP_MEMBER = `DELETE FROM groupMember WHERE groupid = $1 AND memberid = $2`      
 export {
     CREATE_USER_TABLE,
     CREATE_MESSAGE_TABLE,
@@ -127,5 +131,9 @@ export {
     CREATE_GROUP_TABLE,
     CREATE_GROUP_MEMBER_TABLE,
     CREATE_GROUP_RECORD,
-    CREATE_GROUP_MEMBER_RECORD
+    CREATE_GROUP_MEMBER_RECORD,
+    GET_GROUP,
+    GET_GROUP_MEMBER,
+    DELETE_GROUP,
+    DELETE_GROUP_MEMBER
 }

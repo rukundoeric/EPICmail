@@ -19,7 +19,7 @@ let apiUrlv2messages =`${apiUrlv2}/messages`
 let apiUrlv2messagesUnread = `${apiUrlv2messages}/unread`
 let apiUrlv2messagesSent = `${apiUrlv2messages}/sent`
 let apiUrlv2messagesAction = `${apiUrlv2messages}/:id`
-
+let apiUrlv2createGroup = `${apiUrlv2}/groups`
 // Acccount Verification
 let verification_link_development = `http://localhost:7070/api/v2/auth/signup`;
 let verification_link_production = `https://epicmaileric.herokuapp.com/api/v2/auth/signup`
@@ -39,5 +39,6 @@ apiUrlv2messagesUnread,
 apiUrlv2messagesSent,
 apiUrlv2messagesAction,
 verification_link_development,
-verification_link_production
+verification_link_production,
+apiUrlv2createGroup
 }

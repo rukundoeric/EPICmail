@@ -2,6 +2,7 @@ import express from 'express';
 import ST from '../helpers/status'; 
 import User from '../router/User';
 import Message from '../router/Message';
+import Group from '../router/Group';
 import bodyParcer from 'body-parser';
 import dotenv from 'dotenv';
 import db from '../db/migration/db';
@@ -21,6 +22,7 @@ app.use(bodyParcer.json());
 app.use(bodyParcer.urlencoded({ extended: false }));
 app.use('/',User);
 app.use('/',Message);
+app.use('/',Group);
 app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
 app.use((err, req, res, next) => {
     res.status(err.status || ST.INTERNAL_S_E);

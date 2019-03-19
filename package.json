@@ -57,7 +57,9 @@
     "swagger-ui-express": "^4.0.2",
     "travis": "^0.1.1",
     "uuid": "^3.3.2",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "mocha": "^5.2.0",
+    "chai": "*"
   },
   "keywords": [
     "node",

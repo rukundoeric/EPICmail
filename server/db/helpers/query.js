@@ -72,7 +72,9 @@ const CREATE_SENT =
         `INSERT INTO
         sent(messageId, senderId, createdOn)
             VALUES($1, $2, $3)
-            returning *`;              
+            returning *`;       
+            
+const GET_RECEIVED_MESSAGES =`SELECT * FROM messages WHERE receiverid = $1`         
 export {
     CREATE_USER_TABLE,
     CREATE_MESSAGE_TABLE,
@@ -88,6 +90,6 @@ export {
     CREATE_INBOX_TABLE,
     CREATE_INBOX,
     CREATE_SENT_TABLE,
-    CREATE_SENT
-
+    CREATE_SENT,
+    GET_RECEIVED_MESSAGES
 }

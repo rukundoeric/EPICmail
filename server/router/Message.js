@@ -18,7 +18,7 @@ router.delete(`${apiUrlv1messagesAction}`,auth.verifyToken, message.deleteMessag
  router.post(`${apiUrlv2messages}`,authv2.verifyToken,messagedb.createMessage);
  router.get(`${apiUrlv2messages}`,authv2.verifyToken,messagedb.getAllReceivedMessages);
  router.get(`${apiUrlv2messagesUnread}`,authv2.verifyToken,messagedb.getAllUnReadReceivedMessage);
-// router.get(`${apiUrlv2messagesSent}`,authv2.verifyToken,messagedb.getAllSentMessage);
+ router.get(`${apiUrlv2messagesSent}`,authv2.verifyToken,messagedb.getAllSentMessage);
 // router.get(`${apiUrlv2messagesAction}`,authv2.verifyToken, messagedb.getMessage);
 // router.delete(`${apiUrlv2messagesAction}`,authv2.verifyToken, messagedb.deleteMessage);
 

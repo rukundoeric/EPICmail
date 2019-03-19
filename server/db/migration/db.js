@@ -1,4 +1,4 @@
-import { CREATE_USER_TABLE, VERIFICATIONS_TABLE} from '../helpers/query';
+import { CREATE_USER_TABLE, VERIFICATIONS_TABLE, CREATE_MESSAGE_TABLE} from '../helpers/query';
 import connection from '../connection/connection';
 const pool = connection.getPoolConnection();
 class CREATABLE {
@@ -16,6 +16,14 @@ class CREATABLE {
                 pool.query(VERIFICATIONS_TABLE)
                 .then((res) => {
                   console.log("Verificationd table Create Successful");
+                })
+                .catch((err) => {
+                  console.log(err);
+                  pool.end();
+                });
+                pool.query(CREATE_MESSAGE_TABLE)
+                .then((res) => {
+                  console.log("Messages table Create Successful");
                   pool.end();
                 })
                 .catch((err) => {

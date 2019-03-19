@@ -14,12 +14,10 @@ router.get(`${apiUrlv1messagesSent}`,auth.verifyToken,message.getAllSentMessage)
 router.get(`${apiUrlv1messagesAction}`,auth.verifyToken, message.getMessage);
 router.delete(`${apiUrlv1messagesAction}`,auth.verifyToken, message.deleteMessage);
 //API version2
-// router.get('/api/check',messagedb.checkConnection);
  router.post(`${apiUrlv2messages}`,authv2.verifyToken,messagedb.createMessage);
  router.get(`${apiUrlv2messages}`,authv2.verifyToken,messagedb.getAllReceivedMessages);
  router.get(`${apiUrlv2messagesUnread}`,authv2.verifyToken,messagedb.getAllUnReadReceivedMessage);
  router.get(`${apiUrlv2messagesSent}`,authv2.verifyToken,messagedb.getAllSentMessage);
-// router.get(`${apiUrlv2messagesAction}`,authv2.verifyToken, messagedb.getMessage);
-// router.delete(`${apiUrlv2messagesAction}`,authv2.verifyToken, messagedb.deleteMessage);
+ router.get(`${apiUrlv2messagesAction}`,authv2.verifyToken, messagedb.getMessage);
 
 export default router;

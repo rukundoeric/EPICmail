@@ -4,7 +4,8 @@ import { CREATE_MESSAGE,
   CREATE_INBOX, 
   CREATE_SENT,
   GET_USER , 
-  GET_RECEIVED_MESSAGES} from '../helpers/query'
+  GET_RECEIVED_MESSAGES,
+  GET_UNREAD_RECEIVED_MESSAGES} from '../helpers/query'
 import moment from 'moment';
 import joi from 'joi';
 import db from '../db'
@@ -51,6 +52,23 @@ class Message {
     }
     async getAllReceivedMessages(req, res){
         db.query(GET_RECEIVED_MESSAGES, [req.user.id]).then((messages) => {
+            if(messages.rows.lenght <= 0){
+                    //If no message found, means you have not any UnRead Received messages
+                    //then display NOT FOUND MESSAGE
+                    return res.status(ST.NOT_FOUND).send({
+                        "status" : ST.NOT_FOUND,
+                        "data" : MSG.MSG_DATA_NOT_FOUND
+                    });
+            }else{
+                return res.status(ST.OK).send({
+                    "status" : ST.OK,
+                    "data" : messages.rows
+                });
+            }
+        })
+    } 
+    async getAllUnReadReceivedMessage(req, res){
+        db.query(GET_UNREAD_RECEIVED_MESSAGES, [req.user.id]).then((messages) => {
             if(messages.rows.lenght <= 0){
                     //If no message found, means you have not any UnRead Received messages
                     //then display NOT FOUND MESSAGE

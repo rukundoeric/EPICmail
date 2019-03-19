@@ -11,5 +11,8 @@ export default {
     MSG_DATA_WEAK_PASSWORD : {'message':'Password is weak'},
     MSG_PRGS_MESSAGE_DELETE :{"message":"Unfortunately!! You are not sender or receiver of this message, so you can not delete it."},
     MSG_DEL_SUCCESSFUL : {"message":"Message Deleted Successful "},
-    MSG_PRGS_MESSAGE_VIEW : {"message":"Unfortunately!! You are not sender or receiver of this message, so you can not open it."}  
+    MSG_GROUP_DELETED_SUCCESSFUL : {"message":"Group Deleted successfuly "},
+    MSG_PRGS_MESSAGE_VIEW : {"message":"Unfortunately!! You are not sender or receiver of this message, so you can not open it."},  
+    MSG_PRGS_DELETE_GROUP : {"message":"Unfortunately!! You are not the owner of this group, so you can not delete it."}  
+
 }

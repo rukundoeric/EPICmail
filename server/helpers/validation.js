@@ -20,7 +20,11 @@ class Validation {
             }),
             getOrDelMsgSchema: joi.object().keys({
                 id: joi.string().regex(/^[0-9]+$/).min(1).required()
-            })
+            }),
+            verificationSchema: joi.object().keys({
+                email: joi.string().email().required(),
+                code:  joi.string().regex(/^[0-9]+$/).min(5).required(),
+            }),
         } 
     }
 }

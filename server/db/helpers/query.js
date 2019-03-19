@@ -75,7 +75,8 @@ const CREATE_SENT =
             returning *`;       
             
 const GET_RECEIVED_MESSAGES =`SELECT * FROM messages WHERE receiverid = $1`
-const GET_UNREAD_RECEIVED_MESSAGES =  `SELECT * FROM messages WHERE receiverid = $1 AND status = 'sent'`        
+const GET_UNREAD_RECEIVED_MESSAGES =  `SELECT * FROM messages WHERE receiverid = $1 AND status = 'sent'` 
+const GET_SENT_RECEIVED_MESSAGES = `SELECT * FROM messages WHERE senderid = $1`       
 export {
     CREATE_USER_TABLE,
     CREATE_MESSAGE_TABLE,
@@ -93,5 +94,6 @@ export {
     CREATE_SENT_TABLE,
     CREATE_SENT,
     GET_RECEIVED_MESSAGES,
-    GET_UNREAD_RECEIVED_MESSAGES
+    GET_UNREAD_RECEIVED_MESSAGES,
+    GET_SENT_RECEIVED_MESSAGES
 }

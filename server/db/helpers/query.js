@@ -78,7 +78,31 @@ const GET_RECEIVED_MESSAGES =`SELECT * FROM messages WHERE receiverid = $1`
 const GET_UNREAD_RECEIVED_MESSAGES =  `SELECT * FROM messages WHERE receiverid = $1 AND status = 'sent'` 
 const GET_SENT_RECEIVED_MESSAGES = `SELECT * FROM messages WHERE senderid = $1` 
 const GET_SPECIFIC_MESSAGES = `SELECT * FROM messages WHERE id = $1`   
-const DELETE_MESSAGES =`DELETE FROM messages WHERE id = $1`   
+const DELETE_MESSAGES =`DELETE FROM messages WHERE id = $1`  
+
+const CREATE_GROUP_TABLE =
+  `CREATE TABLE IF NOT EXISTS
+    groups(
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(128) NOT NULL
+    )`;
+const CREATE_GROUP_RECORD =
+    `INSERT INTO
+    groups(name)
+        VALUES($1)
+        returning *`;    
+const CREATE_GROUP_MEMBER_TABLE =
+  `CREATE TABLE IF NOT EXISTS
+    groupMember(
+      groupid NUMERIC(100),
+      memberid VARCHAR(128) NOT NULL,
+      role VARCHAR(128) NOT NULL
+    )`;
+    const CREATE_GROUP_MEMBER_RECORD =
+    `INSERT INTO
+    groupMember(groupid, memberid, role)
+        VALUES($1, $2, $3)
+        returning *`;  
 export {
     CREATE_USER_TABLE,
     CREATE_MESSAGE_TABLE,
@@ -99,5 +123,9 @@ export {
     GET_UNREAD_RECEIVED_MESSAGES,
     GET_SENT_RECEIVED_MESSAGES,
     GET_SPECIFIC_MESSAGES,
-    DELETE_MESSAGES
+    DELETE_MESSAGES,
+    CREATE_GROUP_TABLE,
+    CREATE_GROUP_MEMBER_TABLE,
+    CREATE_GROUP_RECORD,
+    CREATE_GROUP_MEMBER_RECORD
 }

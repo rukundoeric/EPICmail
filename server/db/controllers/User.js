@@ -5,13 +5,17 @@ import verification_code from 'generate-sms-verification-code';
 import ST from '../../helpers/status';
 import MSG from '../../helpers/res_messages';
 import auth from '../middleware/auth' 
-import { CREATE_USER_TABLE, CREATE_USER ,VERIFIE_USER, GET_USER, GET_VERIFICATION, CREATE_VERFICATION,DELETE_VERIFICATION} from '../helpers/query';
-import connection from '../connection/connection';
+import { CREATE_USER_TABLE, 
+  CREATE_USER ,
+  VERIFIE_USER, 
+  GET_USER, 
+  GET_VERIFICATION,
+  CREATE_VERFICATION,
+  DELETE_VERIFICATION} from '../helpers/query';
 import joi from 'joi';
 import Helper from '../../helpers/Helper';
 import validation from '../../helpers/validation';
 import db from '../db';
-const pool = connection.getPoolConnection();
 class User {
      constructor(){ 
      }
@@ -92,7 +96,7 @@ class User {
               }else{
                   Helper.isCorrestPassword(req.body.password, user.rows[0].password).then((result) => {
                       if(result){
-                        auth.generateToken(user.rows[0].id).then((token) => {
+                        auth.generateToken(user.rows[0]).then((token) => {
                           res.status(ST.OK).send({
                             "status": ST.OK,
                             "data": {

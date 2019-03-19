@@ -1,4 +1,8 @@
-import { CREATE_USER_TABLE, VERIFICATIONS_TABLE} from '../helpers/query';
+import { CREATE_USER_TABLE, 
+  VERIFICATIONS_TABLE, 
+  CREATE_MESSAGE_TABLE,
+  CREATE_INBOX_TABLE,
+  CREATE_SENT_TABLE} from '../helpers/query';
 import connection from '../connection/connection';
 const pool = connection.getPoolConnection();
 class CREATABLE {
@@ -11,11 +15,33 @@ class CREATABLE {
                 })
                 .catch((err) => {
                   console.log(err);
-                  pool.end();
                 });
                 pool.query(VERIFICATIONS_TABLE)
                 .then((res) => {
                   console.log("Verificationd table Create Successful");
+                })
+                .catch((err) => {
+                });
+                pool.query(CREATE_MESSAGE_TABLE)
+                .then((res) => {
+                  console.log("Messages table Create Successful");
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+
+                pool.query(CREATE_INBOX_TABLE)
+                .then((res) => {
+                  console.log("Inbox table Create Successful");
+                })
+                .catch((err) => {
+                  console.log(err);
+
+                });
+
+                pool.query(CREATE_SENT_TABLE)
+                .then((res) => {
+                  console.log("Sent table Create Successful");
                   pool.end();
                 })
                 .catch((err) => {

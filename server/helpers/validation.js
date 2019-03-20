@@ -24,6 +24,12 @@ class Validation {
         message: joi.string().regex(/^[a-zA-Z]/).min(1).required(),
         status: joi.string().regex(/^[a-zA-Z]/).min(1).required(),
       }),
+      passwordResetShema: joi.object().keys({
+        email: joi.string().email().required(),
+      }),       
+      passwordShema: joi.object().keys({
+        newPassword: joi.string().regex(/^[a-zA-Z]/).min(8).required(),
+      }),
       getOrDelMsgSchema: joi.object().keys({
         id: joi.string().regex(/^[0-9]+$/).min(1).required(),
       }),

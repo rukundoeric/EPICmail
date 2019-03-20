@@ -9,6 +9,7 @@ import { CREATE_GROUP_RECORD,
   CREATE_GROUP_MEMBER_RECORD,
   GET_GROUP_MEMBER,
   DELETE_GROUP,
+  DELETE_GROUP_MEMBERS,
   DELETE_GROUP_MEMBER} from '../helpers/query'
 class Group{
    async createGroup(req, res){
@@ -37,7 +38,7 @@ class Group{
           }); 
         }else{
           db.query(DELETE_GROUP, [id.id]).then(() => {
-            db.query(DELETE_GROUP_MEMBER, [id.id, req.user.id]);
+            db.query(DELETE_GROUP_MEMBERS, [id.id]);
             res.status(ST.OK).send({
               "status": ST.OK,
               "data": MSG.MSG_GROUP_DELETED_SUCCESSFUL
@@ -52,7 +53,6 @@ class Group{
    }
    async addUserToGroup(req, res){
     db.query(GET_GROUP_MEMBER,[req.params.groupid, req.user.id]).then((member) => {
-      console.log(member.rows[0])
       if(member.rows[0].role != 'owner'){
         res.status(ST.UNAUTHORIZED).send({
           "status": ST.UNAUTHORIZED,
@@ -63,6 +63,23 @@ class Group{
             return res.status(ST.CREATED).send({
               "status" : ST.CREATED,
               "data" : memmber.rows[0]
+            });
+          }) 
+        }
+    })
+   }
+   async deleteUserFromGroup(req, res){
+    db.query(GET_GROUP_MEMBER,[req.params.groupid, req.user.id]).then((member) => {
+      if(member.rows[0].role != 'owner'){
+        res.status(ST.UNAUTHORIZED).send({
+          "status": ST.UNAUTHORIZED,
+          "error": MSG.MSG_PRGS_DELETE_USER_GROUP
+        });
+      }else{
+          db.query(DELETE_GROUP_MEMBER,[member.rows[0].groupid,req.params.userid]).then(() => {
+            return res.status(ST.OK).send({
+              "status" : ST.OK,
+              "data" : MSG.MSG_GROUP_MEMBER_DELETED_SUCCESSFUL
             });
           }) 
         }

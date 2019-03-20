@@ -50,5 +50,23 @@ class Group{
       "error": {"message": error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
     })); 
    }
+   async addUserToGroup(req, res){
+    db.query(GET_GROUP_MEMBER,[req.params.groupid, req.user.id]).then((member) => {
+      console.log(member.rows[0])
+      if(member.rows[0].role != 'owner'){
+        res.status(ST.UNAUTHORIZED).send({
+          "status": ST.UNAUTHORIZED,
+          "error": MSG.MSG_PRGS_ADD_USER_GROUP
+        });
+      }else{
+          db.query(CREATE_GROUP_MEMBER_RECORD,[member.rows[0].groupid,req.params.userid,'standard']).then((memmber) => {
+            return res.status(ST.CREATED).send({
+              "status" : ST.CREATED,
+              "data" : memmber.rows[0]
+            });
+          }) 
+        }
+    })
+   }
 }
 export default new Group();

@@ -1,50 +1,52 @@
-let apiUrlv1='/api/v1'
-let apiUrlv2='/api/v2'
+const apiUrlv1 = '/api/v1';
+const apiUrlv2 = '/api/v2';
 
-//All api for v1
-let apiUrlv1auth =`${apiUrlv1}/auth`
-let apiUrlv1authLogin =`${apiUrlv1auth}/login`
-let apiUrlv1authSignup =`${apiUrlv1auth}/signup`
-let apiUrlv1messages =`${apiUrlv1}/messages`
-let apiUrlv1messagesUnread = `${apiUrlv1messages}/unread`
-let apiUrlv1messagesSent = `${apiUrlv1messages}/sent`
-let apiUrlv1messagesAction = `${apiUrlv1messages}/:id`
+// All api for v1
+const apiUrlv1auth = `${apiUrlv1}/auth`;
+const apiUrlv1authLogin = `${apiUrlv1auth}/login`;
+const apiUrlv1authSignup = `${apiUrlv1auth}/signup`;
+const apiUrlv1messages = `${apiUrlv1}/messages`;
+const apiUrlv1messagesUnread = `${apiUrlv1messages}/unread`;
+const apiUrlv1messagesSent = `${apiUrlv1messages}/sent`;
+const apiUrlv1messagesAction = `${apiUrlv1messages}/:id`;
 
-//All api for v2
-let apiUrlv2auth =`${apiUrlv2}/auth`
-let apiUrlv2authLogin =`${apiUrlv2auth}/login`
-let apiUrlv2authSignup =`${apiUrlv2auth}/signup`
-let apiUrlv2authVerification = `${apiUrlv2authSignup}/:email/:code`
-let apiUrlv2messages =`${apiUrlv2}/messages`
-let apiUrlv2messagesUnread = `${apiUrlv2messages}/unread`
-let apiUrlv2messagesSent = `${apiUrlv2messages}/sent`
-let apiUrlv2messagesAction = `${apiUrlv2messages}/:id`
-let apiUrlv2createGroup = `${apiUrlv2}/groups`
-let apiUrlv2deleteGroup = `${apiUrlv2}/groups/:id`
-let apiUrlv2AddUserToGroup = `${apiUrlv2}/groups/:groupid/users/:userid` 
-let apiUrlv2DeleteUserFromGroup = `${apiUrlv2}/groups/:groupid/users/:userid`
+// All api for v2
+const apiUrlv2auth = `${apiUrlv2}/auth`;
+const apiUrlv2authLogin = `${apiUrlv2auth}/login`;
+const apiUrlv2authSignup = `${apiUrlv2auth}/signup`;
+const apiUrlv2authVerification = `${apiUrlv2authSignup}/:email/:code`;
+const apiUrlv2messages = `${apiUrlv2}/messages`;
+const apiUrlv2messagesUnread = `${apiUrlv2messages}/unread`;
+const apiUrlv2messagesSent = `${apiUrlv2messages}/sent`;
+const apiUrlv2messagesAction = `${apiUrlv2messages}/:id`;
+const apiUrlv2createGroup = `${apiUrlv2}/groups`;
+const apiUrlv2deleteGroup = `${apiUrlv2}/groups/:id`;
+const apiUrlv2AddUserToGroup = `${apiUrlv2}/groups/:groupid/users/:userid`;
+const apiUrlv2DeleteUserFromGroup = `${apiUrlv2}/groups/:groupid/users/:userid`;
+const apiUrlv2SendMessageToGroup = `${apiUrlv2}/groups/:groupid/messages`;
 // Acccount Verification
-let verification_link_development = `http://localhost:7070/api/v2/auth/signup`;
-let verification_link_production = `https://epicmaileric.herokuapp.com/api/v2/auth/signup`
+const verification_link_development = 'http://localhost:7070/api/v2/auth/signup';
+const verification_link_production = 'https://epicmaileric.herokuapp.com/api/v2/auth/signup';
 
 export {
-apiUrlv1authLogin,
-apiUrlv1authSignup,
-apiUrlv1messages,
-apiUrlv1messagesUnread,
-apiUrlv1messagesSent,
-apiUrlv1messagesAction,
-apiUrlv2authVerification,
-apiUrlv2authLogin,
-apiUrlv2authSignup,
-apiUrlv2messages,
-apiUrlv2messagesUnread,
-apiUrlv2messagesSent,
-apiUrlv2messagesAction,
-verification_link_development,
-verification_link_production,
-apiUrlv2createGroup,
-apiUrlv2deleteGroup,
-apiUrlv2AddUserToGroup,
-apiUrlv2DeleteUserFromGroup
-}
+  apiUrlv1authLogin,
+  apiUrlv1authSignup,
+  apiUrlv1messages,
+  apiUrlv1messagesUnread,
+  apiUrlv1messagesSent,
+  apiUrlv1messagesAction,
+  apiUrlv2authVerification,
+  apiUrlv2authLogin,
+  apiUrlv2authSignup,
+  apiUrlv2messages,
+  apiUrlv2messagesUnread,
+  apiUrlv2messagesSent,
+  apiUrlv2messagesAction,
+  verification_link_development,
+  verification_link_production,
+  apiUrlv2createGroup,
+  apiUrlv2deleteGroup,
+  apiUrlv2AddUserToGroup,
+  apiUrlv2DeleteUserFromGroup,
+  apiUrlv2SendMessageToGroup,
+};

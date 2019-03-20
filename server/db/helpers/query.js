@@ -106,7 +106,8 @@ const CREATE_GROUP_MEMBER_RECORD =
 const GET_GROUP = `SELECT * FROM groups WHERE id = $1`         
 const GET_GROUP_MEMBER = `SELECT * FROM groupMember WHERE groupid = $1 AND memberid = $2`   
 const DELETE_GROUP =`DELETE FROM groups WHERE id = $1`  
-const DELETE_GROUP_MEMBER = `DELETE FROM groupMember WHERE groupid = $1 AND memberid = $2`      
+const DELETE_GROUP_MEMBERS = `DELETE FROM groupMember WHERE groupid = $1` 
+const DELETE_GROUP_MEMBER = `DELETE FROM groupMember WHERE groupid = $1 AND memberid = $2`        
 export {
     CREATE_USER_TABLE,
     CREATE_MESSAGE_TABLE,
@@ -135,5 +136,6 @@ export {
     GET_GROUP,
     GET_GROUP_MEMBER,
     DELETE_GROUP,
+    DELETE_GROUP_MEMBERS,
     DELETE_GROUP_MEMBER
 }

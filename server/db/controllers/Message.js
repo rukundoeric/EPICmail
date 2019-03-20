@@ -9,7 +9,7 @@ import { CREATE_MESSAGE,
   GET_UNREAD_RECEIVED_MESSAGES,
   GET_SENT_RECEIVED_MESSAGES,
   GET_SPECIFIC_MESSAGES,
-  DELETE_MESSAGES} from '../helpers/query'
+  DELETE_MESSAGES } from '../helpers/query'
 import moment from 'moment';
 import joi from 'joi';
 import db from '../db'

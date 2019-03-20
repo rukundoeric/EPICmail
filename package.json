@@ -10,7 +10,7 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text babel-node server/tests/runner.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "start": "node config/start.js",
+    "start": "node server/config/start.js",
     "heroku-postbuild": "npm install --production"
   },
   "repository": {

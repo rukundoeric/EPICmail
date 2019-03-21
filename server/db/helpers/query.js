@@ -14,7 +14,7 @@ const VERIFICATIONS_TABLE =
   `CREATE TABLE IF NOT EXISTS
     verification(
       id SERIAL  PRIMARY KEY,
-      email VARCHAR(128) UNIQUE NOT NULL,
+      email VARCHAR(128) NOT NULL,
       code VARCHAR(128) NOT NULL
     )`;
 const CREATE_USER =

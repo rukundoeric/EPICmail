@@ -26,7 +26,7 @@ const link = process.env.NODE_ENV ? reset_link_production : reset_link_developme
           pass: process.env.EPIC_MAIL_PASSWORD
       }
     });
-    readHTMLFile(__dirname + '../../../../UI/html/verifier_password_reset.html', function(err, html) {
+    readHTMLFile(__dirname + '/verifier_password_reset.html', function(err, html) {
       var template = handlebars.compile(html);
       var replacements = {
           link: `${link}/${req.mail.id}`, 
@@ -46,7 +46,7 @@ const link = process.env.NODE_ENV ? reset_link_production : reset_link_developme
         res.status(ST.CREATED).send({
             "status":ST.CREATED,
             "data": {
-              "message":`Account created successful. reset link has been sent to your email <${req.mail.email}>`,
+              "message":`Reset link has been sent to your email <${req.mail.email}>`,
               "email":`${req.mail.email}`
             }
         });

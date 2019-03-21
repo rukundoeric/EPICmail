@@ -14,29 +14,27 @@ import {
   DELETE_GROUP_MEMBER,
   CREATE_MESSAGE,
   CREATE_INBOX,
-  CREATE_SENT
-
+  CREATE_SENT,
+  GET_GROUP,
+  UPDATE_GROUP_NAME,
 } from '../helpers/query';
 
 class Group {
   async createGroup(req, res) {
     joi.validate(req.body, validation.Validator.groupSchema).then(() => {
-      try {
-        db.query(CREATE_GROUP_RECORD, [req.body.name]).then((group) => {
-          db.query(CREATE_GROUP_MEMBER_RECORD, [group.rows[0].id, req.user.id, 'owner']).then(() => res.status(ST.CREATED).send({
-            status: ST.CREATED,
-            data: group.rows[0],
-          }));
-        });
-      }
-      catch (error) {
-        if (error.routine === '_bt_check_unique') {
+      db.query(CREATE_GROUP_RECORD, [req.body.name]).then((group) => {
+        db.query(CREATE_GROUP_MEMBER_RECORD, [group.rows[0].id, req.user.id, 'owner']).then(() => res.status(ST.CREATED).send({
+          status: ST.CREATED,
+          data: group.rows[0],
+        }));
+      }).catch((err) => {
+        if (err.routine === '_bt_check_unique') {
           return res.status(ST.BAD_REQUEST).send({
             status: ST.BAD_REQUEST,
             error: MSG.MSG_GROUP_ALEADY_EXIST,
           });
         }
-      }
+      });
     }).catch(error => res.send({
       status: 400,
       error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
@@ -47,19 +45,25 @@ class Group {
     const id = req.params;
     joi.validate(id, validation.Validator.getOrDelMsgSchema).then((result) => {
       db.query(GET_GROUP_MEMBER, [id.id, req.user.id]).then((member) => {
-        if (member.rows[0].role != 'owner') {
-          res.status(ST.UNAUTHORIZED).send({
-            status: ST.UNAUTHORIZED,
-            error: MSG.MSG_PRGS_DELETE_GROUP,
-          });
-        }
-        else {
-          db.query(DELETE_GROUP, [id.id]).then(() => {
-            db.query(DELETE_GROUP_MEMBERS, [id.id]);
-            res.status(ST.OK).send({
-              status: ST.OK,
-              data: MSG.MSG_GROUP_DELETED_SUCCESSFUL,
+        if (member.rows[0]) {
+          if (member.rows[0].role != 'owner') {
+            res.status(ST.UNAUTHORIZED).send({
+              status: ST.UNAUTHORIZED,
+              error: MSG.MSG_PRGS_DELETE_GROUP,
             });
+          } else {
+            db.query(DELETE_GROUP, [id.id]).then(() => {
+              db.query(DELETE_GROUP_MEMBERS, [id.id]);
+              res.status(ST.OK).send({
+                status: ST.OK,
+                data: MSG.MSG_GROUP_DELETED_SUCCESSFUL,
+              });
+            });
+          }
+        } else {
+          return res.status(ST.NOT_FOUND).send({
+            status: ST.NOT_FOUND,
+            error: MSG.MSG_DATA_NOT_FOUND,
           });
         }
       });
@@ -76,8 +80,7 @@ class Group {
           status: ST.UNAUTHORIZED,
           error: MSG.MSG_PRGS_ADD_USER_GROUP,
         });
-      }
-      else {
+      } else {
         db.query(CREATE_GROUP_MEMBER_RECORD, [member.rows[0].groupid, req.params.userid, 'standard']).then(memmber => res.status(ST.CREATED).send({
           status: ST.CREATED,
           data: memmber.rows[0],
@@ -93,8 +96,7 @@ class Group {
           status: ST.UNAUTHORIZED,
           error: MSG.MSG_PRGS_DELETE_USER_GROUP,
         });
-      }
-      else {
+      } else {
         db.query(DELETE_GROUP_MEMBER, [member.rows[0].groupid, req.params.userid]).then(() => res.status(ST.OK).send({
           status: ST.OK,
           data: MSG.MSG_GROUP_MEMBER_DELETED_SUCCESSFUL,
@@ -127,6 +129,29 @@ class Group {
         });
       });
 
+    }).catch(error => res.send({
+      status: 400,
+      error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
+    }));
+  }
+
+  async chanangeGroupName(req, res) {
+    joi.validate(req.body, validation.Validator.groupSchema).then(() => {
+      db.query(GET_GROUP, [req.params.groupid]).then((group) => {
+        if (group.rows[0]) {
+          db.query(UPDATE_GROUP_NAME, [req.body.name, req.params.groupid]).then((group) => {   
+            res.status(ST.OK).send({
+              status: ST.OK,
+              message: MSG.MSG_GROUP_NAME_UPDATED,
+            })
+          });
+        } else {
+          return res.status(ST.NOT_FOUND).send({
+            status: ST.NOT_FOUND,
+            error: MSG.MSG_DATA_NOT_FOUND,
+          });
+        }
+      });
     }).catch(error => res.send({
       status: 400,
       error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },

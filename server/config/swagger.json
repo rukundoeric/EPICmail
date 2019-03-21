@@ -1,0 +1,667 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the documentation of EPICmail API hosted on Heroku",
+    "version": "1.0.0",
+    "title": "EPICmail",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "ericrukundo055@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:7070",
+  "basePath": "/api/v2",
+  "tags": [
+    {
+      "name": "auth",
+      "description": " User Authentication "
+    },
+    {
+      "name": "message",
+      "description": " Send and receive messages "
+    },
+    {
+      "name": "group",
+      "description": " Group "
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "summary": "SignUp",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "signup",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserSignup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 201
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "messages": {
+                      "type": "string",
+                      "example": "Account created successful. verification code has been sent to your email <ericrukundo005@gmail.com>"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "login",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userLogin"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 201
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJhNWZiMDQ1MC0yZGExLTQyNzgtYmEwZi04YjkzMDYwNGI5NzYiLCJpYXQiOjE1NTI0NzcxNjYsImV4cCI6MTU1MjU2MzU2Nn0.oVxZBUqtiY-z2YzQXI1276D7IypL1CScjcV1P1MJta0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/signup/{email}/{code}": {
+      "post": {
+        "summary": "Account verification",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "verifier",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "verification code",
+            "required": true,
+            "type": "integer",
+            "format": "int5"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 201
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "integer",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJhNWZiMDQ1MC0yZGExLTQyNzgtYmEwZi04YjkzMDYwNGI5NzYiLCJpYXQiOjE1NTI0NzcxNjYsImV4cCI6MTU1MjU2MzU2Nn0.oVxZBUqtiY-z2YzQXI1276D7IypL1CScjcV1P1MJta0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages": {
+      "post": {
+        "summary": "Send Message",
+        "tags": [
+          "message"
+        ],
+        "operationId": "sendMessage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "epic-mail-access-token",
+            "in": "header",
+            "description": "Authentication key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sendMessage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/message"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all received messages",
+        "tags": [
+          "message"
+        ],
+        "operationId": "getAllReceivedMessages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "epic-mail-access-token",
+            "in": "header",
+            "description": "Authentication key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation:This will return  All user's received messages. NOTE:All  received message are all of those inbox messages which their receiverId is equal to user's id. this will avoid spaming.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/message"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No any received message found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "You have not any received message!!!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/unread": {
+      "get": {
+        "summary": "Get all Unread received messages",
+        "tags": [
+          "message"
+        ],
+        "operationId": "getUnreadReceivedMessages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "epic-mail-access-token",
+            "in": "header",
+            "description": "Authentication key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This will return  All user's unread received messages. NOTE:All unread received message are all of those inbox messages which their receiverId is equal to user's id and status is still sent not updated to read yet. this will avoid spaming.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/message"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No unread received message found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "You have not any unread message!!!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/sent": {
+      "get": {
+        "summary": "Get all Sent messages",
+        "tags": [
+          "message"
+        ],
+        "operationId": "getSentMessages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "epic-mail-access-token",
+            "in": "header",
+            "description": "Authentication key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This will return  All user's Sent messages. NOTE:All sent message are all of those sent messages which their senderId is equal to user's id. this will avoid spaming.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/message"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No sent message found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "You have not any Sent message!!!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/{id}": {
+      "get": {
+        "summary": "Get specific message by id",
+        "tags": [
+          "message"
+        ],
+        "operationId": "getSpecificMessage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "epic-mail-access-token",
+            "in": "header",
+            "description": "Authentication key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Message id",
+            "required": true,
+            "type": "integer",
+            "format": "int5"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This will return single specific message NOTE:To be able to access it, User must be either sender or receiver of the message.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/message"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Message not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Message Not found!!!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete specific message by id",
+        "tags": [
+          "message"
+        ],
+        "operationId": "deleteSpecificMessage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "epic-mail-access-token",
+            "in": "header",
+            "description": "Authentication key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Message id",
+            "required": true,
+            "type": "integer",
+            "format": "int5"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation, This will delete single specific message NOTE:To be able to delete it, User must be either sender or receiver of the message.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Message Deleted Successful!!!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Message not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Message Not found!!!"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "sendMessage": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "example": "Invitaion to mariage"
+        },
+        "message": {
+          "type": "string",
+          "example": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!"
+        },
+        "to": {
+          "type": "string",
+          "example": "ericprestein055@gmail.com"
+        },
+        "status": {
+          "type": "string",
+          "example": "read"
+        }
+      },
+      "required": [
+        "subject",
+        "message",
+        "to",
+        "status"
+      ]
+    },
+    "UserSignup": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "password": {
+          "type": "string",
+          "pattern": ".{8,64}",
+          "example": "123456"
+        },
+        "first_name": {
+          "type": "string",
+          "example": "Olivier"
+        },
+        "last_name": {
+          "type": "string",
+          "example": "Esuka"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password"
+      ]
+    },
+    "userLogin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "ericrukundo005@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "eric@123"
+        }
+      }
+    },
+    "message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 2
+        },
+        "createOn": {
+          "type": "string",
+          "example": "2019-03-04T05:44:00.494Z"
+        },
+        "subject": {
+          "type": "string",
+          "example": "Invitation to mariage"
+        },
+        "senderId": {
+          "type": "integer",
+          "example": 3
+        },
+        "receiverId": {
+          "type": "integer",
+          "example": 2
+        },
+        "message": {
+          "type": "string",
+          "example": "Hello guys, we would to invite you to our mariage celemony which will take place at kacyiro suday pack 11:00 am, Thank you!"
+        },
+        "parentMessageId": {
+          "type": "integer",
+          "example": 1
+        },
+        "status": {
+          "type": "string",
+          "example": "sent"
+        }
+      }
+    },
+    "inbox": {
+      "type": "object",
+      "properties": {
+        "receiverId": {
+          "type": "integer",
+          "example": 4
+        },
+        "messageId": {
+          "type": "integer",
+          "example": 3
+        },
+        "createdOn": {
+          "type": "string",
+          "example": "2019-03-04T05:44:00.494Z"
+        }
+      }
+    },
+    "sent": {
+      "type": "object",
+      "properties": {
+        "senderId": {
+          "type": "integer",
+          "example": 4
+        },
+        "messageId": {
+          "type": "integer",
+          "example": 3
+        },
+        "createdOn": {
+          "type": "string",
+          "example": "2019-03-04T05:44:00.494Z"
+        }
+      }
+    }
+  }
+}

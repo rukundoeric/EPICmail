@@ -8,7 +8,7 @@
     "node": "10.15.1"
   },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text babel-node server/tests/runner.js",
+    "test": "babel-node server/tests/runner.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "start": "node server/config/start.js",
     "heroku-postbuild": "npm install --production"
@@ -63,8 +63,7 @@
     "request": "^2.88.0",
     "swagger-ui-express": "^4.0.2",
     "travis": "^0.1.1",
-    "uuid": "^3.3.2",
-    "yamljs": "^0.3.0"
+    "uuid": "^3.3.2"
   },
   "keywords": [
     "node",
@@ -75,8 +74,6 @@
   "devDependencies": {
     "codecov": "^3.2.0",
     "coveralls": "^3.0.2",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
     "istanbul": "^0.4.5"
   }
 }

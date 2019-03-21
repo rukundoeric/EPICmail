@@ -24,10 +24,16 @@ const apiUrlv2deleteGroup = `${apiUrlv2}/groups/:id`;
 const apiUrlv2AddUserToGroup = `${apiUrlv2}/groups/:groupid/users/:userid`;
 const apiUrlv2DeleteUserFromGroup = `${apiUrlv2}/groups/:groupid/users/:userid`;
 const apiUrlv2SendMessageToGroup = `${apiUrlv2}/groups/:groupid/messages`;
+const apiUrlv2RenameGroup = `${apiUrlv2}/groups/:groupid`;
+
+const apiUrlv2passwordReset      =  `${apiUrlv2}/auth/reset`;
+const apiUrlv2ConfirmPasswordReset=`${apiUrlv2}/auth/reset/:userid`
 // Acccount Verification
 const verification_link_development = 'http://localhost:7070/api/v2/auth/signup';
 const verification_link_production = 'https://epicmaileric.herokuapp.com/api/v2/auth/signup';
-
+// Password Reset
+const reset_link_development= 'http://localhost:7070/api/v2/auth/reset';
+const reset_link_production = 'https://epicmaileric.herokuapp.com/api/v2/auth/reset';
 export {
   apiUrlv1authLogin,
   apiUrlv1authSignup,
@@ -49,4 +55,9 @@ export {
   apiUrlv2AddUserToGroup,
   apiUrlv2DeleteUserFromGroup,
   apiUrlv2SendMessageToGroup,
+  apiUrlv2RenameGroup,
+  apiUrlv2passwordReset,
+  apiUrlv2ConfirmPasswordReset,
+  reset_link_development,
+  reset_link_production
 };

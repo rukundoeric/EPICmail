@@ -8,10 +8,9 @@ import bodyParcer from 'body-parser';
 import dotenv from 'dotenv';
 import db from '../db/migration/db';
 import swagger from 'swagger-ui-express';
-import yamljs from 'yamljs';
+import docs from '../config/swagger';
 dotenv.config();
 process.env.IS_TESTING = 'FALSE';
-const swaggerDocument = yamljs.load('server/config/docs.yml');
 const app = express();
 const PORT = process.env.PORT || 7070;
 app.use((req, res, next) => {
@@ -25,7 +24,7 @@ app.use(bodyParcer.urlencoded({ extended: false }));
 app.use('/',User);
 app.use('/',Message);
 app.use('/',Group);
-app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
+app.use('/', swagger.serve, swagger.setup(docs));
 app.use((err, req, res, next) => {
     res.status(err.status || ST.INTERNAL_S_E);
     res.json({

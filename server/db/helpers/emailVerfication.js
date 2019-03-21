@@ -28,7 +28,7 @@ const link = process.env.NODE_ENV ? verification_link_production : verification_
                     pass: process.env.EPIC_MAIL_PASSWORD
                 }
             });
-            readHTMLFile(__dirname + '../../../../UI/html/verification.html', function(err, html) {
+            readHTMLFile(__dirname + '/UI/html/verification.html', function(err, html) {
                 var template = handlebars.compile(html);
                 var replacements = {
                     link: `${link}/${req.mail.email}/${req.mail.v_code}`

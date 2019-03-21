@@ -92,7 +92,6 @@ class User {
 
   async login(req, res) {
     pool.connect((err) => {
-      if(!err){
         joi.validate(req.body, validation.Validator.loginSchema).then((result) => {
           db.query(GET_USER, [req.body.email]).then((user) => {
             if (!user.rows[0]) {
@@ -124,9 +123,6 @@ class User {
           status: 400,
           error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
         }));
-      }else{
-        console.log("Database Not Connected");
-      }
     })
    
   }

@@ -26,7 +26,7 @@ class Message {
             error: { message: ' You can not send message to unregisted email.' },
           });
         } else {
-          if(req.params.to === receiver.rows[0].email){
+          if(req.body.to == receiver.rows[0].email){
             return res.status(ST.NOT_FOUND).send({
               'status': ST.NOT_FOUND,
               'error':  { message: ' You can not send message to your self.' },

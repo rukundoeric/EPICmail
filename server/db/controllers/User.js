@@ -15,11 +15,9 @@ import {
   GET_USER,
   GET_VERIFICATION,
   CREATE_VERFICATION,
-  DELETE_VERIFICATION 
-} from '../helpers/query';
   DELETE_VERIFICATION,
-  USER_PASSWORD_RESET} from '../helpers/query';
-import joi from 'joi';
+  USER_PASSWORD_RESET, 
+} from '../helpers/query';
 import Helper from '../../helpers/Helper';
 import validation from '../../helpers/validation';
 import db from '../db';

@@ -25,25 +25,25 @@ class User {
 
   async signup(req, res, next) {
     joi.validate(req.body, validation.Validator.userSchema).then((result) => {
-      db.query(GET_USER, [req.params.email]).then((user) => {
+      db.query(GET_USER, [req.body.email]).then((user) => {
          if(user.rows[0]){
+          console.log(user.rows[0])
           res.status(ST.BAD_REQUEST).send({
             "status": ST.BAD_REQUEST,
             "error" : MSG.MSG_USER_ALREAD_EXIST
           });
          } 
-
-         Helper.hashPassword(req.body.password).then((pass) => {
-          const code = verification_code(8, { type: 'number' });
-          const values = [uuidv4(), req.body.firstName, req.body.lastName, req.body.email, pass, moment(new Date()), moment(new Date()), false];
-          const v_values = [req.body.email, code];
-          db.query(CREATE_USER, values).then(() => {
-            db.query(CREATE_VERFICATION, v_values).then((result) => {
-              req.mail = { v_code: code, email: req.body.email };
-              next();
+          Helper.hashPassword(req.body.password).then((pass) => {
+            const code = verification_code(8, { type: 'number' });
+            const values = [uuidv4(), req.body.firstName, req.body.lastName, req.body.email, pass, moment(new Date()), moment(new Date()), false];
+            const v_values = [req.body.email, code];
+            db.query(CREATE_USER, values).then(() => {
+              db.query(CREATE_VERFICATION, v_values).then((result) => {
+                req.mail = { v_code: code, email: req.body.email };
+                next();
+              });
             });
-          });
-         });
+           });
       }) 
     }).catch(error => res.send({
       status: 400,

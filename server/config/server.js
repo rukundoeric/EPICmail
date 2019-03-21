@@ -18,6 +18,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+app.set('UI', path.join(__dirname, 'UI'));
 app.use(bodyParcer.json());
 app.use(bodyParcer.urlencoded({ extended: false }));
 app.use('/',User);

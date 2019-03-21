@@ -11,7 +11,8 @@ import { CREATE_MESSAGE,
   GET_UNREAD_RECEIVED_MESSAGES,
   GET_SENT_RECEIVED_MESSAGES,
   GET_SPECIFIC_MESSAGES,
-  DELETE_MESSAGES } from '../helpers/query'
+  DELETE_MESSAGES,
+  GET_USER_BY_ID } from '../helpers/query'
 import db from '../db';
 import validation from '../../helpers/validation';
 
@@ -26,33 +27,38 @@ class Message {
             error: { message: ' You can not send message to unregisted email.' },
           });
         } else {
-          if(req.body.to === receiver.rows[0].email){
-            return res.status(ST.NOT_FOUND).send({
-              'status': ST.NOT_FOUND,
-              'error':  { message: ' You can not send message to your self.' },
-            });
-           }
-          const message = [
-            req.user.id,
-            `${receiver.rows[0].id}`,
-            req.body.subject,
-            req.body.message,
-            !req.body.parentMessageId ? 0 : req.body.parentMessageId,
-            req.body.status,
-            moment(new Date()),
-          ];
-          db.query(CREATE_MESSAGE, message).then((result) => {
-            if ([result.rows[0].status] != 'draft') {
-              const inbox = [result.rows[0].id, result.rows[0].receiverid, moment(new Date())];
-              const sent = [result.rows[0].id, result.rows[0].senderid, moment(new Date())];
-              db.query(CREATE_INBOX, inbox);
-              db.query(CREATE_SENT, sent);
-            }
-            res.status(ST.CREATED).send({
-              status: ST.CREATED,
-              data: result.rows[0],
-            });
+  
+          db.query(GET_USER_BY_ID,[req.user.id]).then((me) => {
+            if(req.body.to === me.rows[0].email){
+              return res.status(ST.NOT_FOUND).send({
+                'status': ST.NOT_FOUND,
+                'error':  { message: ' You can not send message to your self.' },
+              });
+             } else {
+                const message = [
+                  req.user.id,
+                  `${receiver.rows[0].id}`,
+                  req.body.subject,
+                  req.body.message,
+                  !req.body.parentMessageId ? 0 : req.body.parentMessageId,
+                  req.body.status,
+                  moment(new Date()),
+                ];
+                db.query(CREATE_MESSAGE, message).then((result) => {
+                  if ([result.rows[0].status] != 'draft') {
+                    const inbox = [result.rows[0].id, result.rows[0].receiverid, moment(new Date())];
+                    const sent = [result.rows[0].id, result.rows[0].senderid, moment(new Date())];
+                    db.query(CREATE_INBOX, inbox);
+                    db.query(CREATE_SENT, sent);
+                  }
+                  res.status(ST.CREATED).send({
+                    status: ST.CREATED,
+                    data: result.rows[0],
+                  });
+                });
+             }
           });
+        
         }
       });
     }).catch(error => res.send({

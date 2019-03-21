@@ -15,8 +15,7 @@ import {
   GET_USER,
   GET_VERIFICATION,
   CREATE_VERFICATION,
-  DELETE_VERIFICATION,
-  USER_PASSWORD_RESET, 
+  DELETE_VERIFICATION 
 } from '../helpers/query';
 import Helper from '../../helpers/Helper';
 import validation from '../../helpers/validation';

@@ -6,6 +6,7 @@ dotenv.config();
 const config = con.getConnectionConfig();
 class Connection {
   constructor() {
+		console.log(config);
     this.getPoolConnection = () => new Pool(config);
   }
 }

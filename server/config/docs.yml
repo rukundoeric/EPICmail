@@ -10,7 +10,7 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "localhost:7070"
-basePath: "/api/v1"
+basePath: "/api/v2"
 tags:
 - name: "auth"
   description: " Send and receive messages "

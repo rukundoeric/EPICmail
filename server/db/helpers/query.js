@@ -24,7 +24,8 @@ const CREATE_USER =
       returning *`;
 const GET_USER = `SELECT * FROM users WHERE email = $1`;  
 const GET_USER_BY_ID = `SELECT * FROM users WHERE id = $1`;       
-const VERIFIE_USER =`UPDATE users SET verified=true WHERE email = $1`      
+const VERIFIE_USER =`UPDATE users SET verified=true WHERE email = $1`;   
+const USER_PASSWORD_RESET =`UPDATE users SET password = $1 WHERE id = $2`;      
 const CREATE_VERFICATION =
   `INSERT INTO
      verification(email, code)
@@ -137,5 +138,6 @@ export {
     GET_GROUP_MEMBER,
     DELETE_GROUP,
     DELETE_GROUP_MEMBERS,
-    DELETE_GROUP_MEMBER
+    DELETE_GROUP_MEMBER,
+    USER_PASSWORD_RESET
 }

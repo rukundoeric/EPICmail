@@ -17,6 +17,9 @@ import {
   CREATE_VERFICATION,
   DELETE_VERIFICATION 
 } from '../helpers/query';
+  DELETE_VERIFICATION,
+  USER_PASSWORD_RESET} from '../helpers/query';
+import joi from 'joi';
 import Helper from '../../helpers/Helper';
 import validation from '../../helpers/validation';
 import db from '../db';

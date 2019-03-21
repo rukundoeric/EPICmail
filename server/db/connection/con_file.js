@@ -11,9 +11,7 @@ class ConnectionConfig {
       password: process.env.TODO_DB_PW,
       database: 'epicmail',
     };
-    this.production = {
-      connection: process.env.DATABASE_URL,
-    };
+    this.production = process.env.DATABASE_URL;
     this.getConnectionConfig = () => this.environment == 'development' ? this.development : this.production;
   }
 }

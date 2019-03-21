@@ -1,5 +1,6 @@
 import Request from 'request';
 import {hostUrl} from '../data/data';
+import run from '../config/server';
 import { 
 piUrlv2authSignup,
   apiUrlv2authLogin,
@@ -7,6 +8,15 @@ piUrlv2authSignup,
  } from '../../helpers/const';
 
 describe('APIv2 User', () => {
+  let server;
+  beforeAll(async (done) => {
+    server = run(4040);
+    done();
+  })
+  afterAll((done) => {
+      server.close();
+      done();
+  })
   describe('POST User Login /auth/login', () => {
     it('Should Login User', (done) => {
       Request.post(`${hostUrl}${apiUrlv2authLogin}`,

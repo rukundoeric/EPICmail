@@ -27,7 +27,6 @@ class Message {
             error: { message: ' You can not send message to unregisted email.' },
           });
         } else {
-  * 
           db.query(GET_USER_BY_ID,[req.user.id]).then((me) => {
             if(req.body.to === me.rows[0].email){
               return res.status(ST.NOT_FOUND).send({

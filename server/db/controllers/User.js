@@ -64,9 +64,9 @@ class User {
               error: { message: 'Invalid Verification' },
             });
           } else if (verfication.rows[0].code == req.params.code) {
-            db.query(VERIFIE_USER, [req.params.email]).then((result) => {
+            db.query(VERIFIE_USER, [req.params.email]).then((user_rs) => {
               db.query(DELETE_VERIFICATION, [req.params.email]).then((result) => {
-                auth.generateToken(user.rows[0].id).then((token) => {
+                auth.generateToken(user_rs.rows[0].id).then((token) => {
                   res.status(ST.CREATED).send({
                     status: ST.CREATED,
                     data: {
@@ -89,38 +89,37 @@ class User {
   }
 
   async login(req, res) {
-    pool.connect((err) => {
-      joi.validate(req.body, validation.Validator.loginSchema).then((result) => {
-        db.query(GET_USER, [req.body.email]).then((user) => {
-          if (!user.rows[0]) {
-            return res.status(ST.NOT_FOUND).send({
-              status: ST.NOT_FOUND,
-              error: { message: 'User not registered' },
+    joi.validate(req.body, validation.Validator.loginSchema).then((result) => {
+      db.query(GET_USER, [req.body.email]).then((user) => {
+        if (!user.rows[0]) {
+          return res.status(ST.NOT_FOUND).send({
+            status: ST.NOT_FOUND,
+            error: { message: 'User not registered' },
+          });
+        }
+        Helper.isCorrestPassword(req.body.password, user.rows[0].password).then((result) => {
+          if (result) {
+            auth.generateToken(user.rows[0]).then((token) => {
+              res.status(ST.OK).send({
+                status: ST.OK,
+                data: {
+                  message: 'User logged in successfuly',
+                  token,
+                },
+              });
+            });
+          } else {
+            return res.status(ST.BAD_REQUEST).send({
+              status: ST.BAD_REQUEST,
+              error: { message: 'Incorrect password' },
             });
           }
-          Helper.isCorrestPassword(req.body.password, user.rows[0].password).then((result) => {
-            if (result) {
-              auth.generateToken(user.rows[0]).then((token) => {
-                res.status(ST.OK).send({
-                  status: ST.OK,
-                  data: {
-                    message: 'User logged in successfuly',
-                    token,
-                  },
-                });
-              });
-            } else {
-              return res.status(ST.BAD_REQUEST).send({
-                status: ST.BAD_REQUEST,
-                error: { message: 'Incorrect password' },
-              });
-            }
-          });
         });
-      }).catch(error => res.send({
-        status: 400,
-        error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
-      }));
+      
+    }).catch(error => res.send({
+      status: 400,
+      error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
+    }));
     });
 
   }

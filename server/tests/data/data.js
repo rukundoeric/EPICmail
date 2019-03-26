@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import moment from 'moment';
 const hostUrl = 'http://127.0.0.1:4040';
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJhNWZiMDQ1MC0yZGExLTQyNzgtYmEwZi04YjkzMDYwNGI5NzYiLCJpYXQiOjE1NTI2MjIyNjMsImV4cCI6MTU1MzIyNzA2M30.U2onI1zHNJyBtri5qc8HlTM6xYc79xxvSbr3qY48Pvw';
+const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJhNWZiMDQ1MC0yZGExLTQyNzgtYmEwZi04YjkzMDYwNGI5NzYiLCJpYXQiOjE1NTMyMjczNjEsImV4cCI6MTU1MzgzMjE2MX0.oL1Ni1iOZT-tguUKCCoBBFBcYHX4-lqda7dV4g5r7bw';
 const userData =  {
         "id": "a5fb0450-2da1-4278-ba0f-8b930604b976",
         "email": "ericrukundo@gmail.com",

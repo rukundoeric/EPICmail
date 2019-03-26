@@ -1,6 +1,6 @@
 import Request from 'request';
-import {hostUrl} from '../data/data';
-import run from '../config/server';
+import {hostUrl,userToken} from '../data/data';
+import run from '../../config/server';
 import { 
 piUrlv2authSignup,
   apiUrlv2authLogin,
@@ -23,7 +23,7 @@ describe('APIv2 User', () => {
         { json: true, form: { "email":"ericrukundo005@gmail.com","password":"Eric00005"} }, (err, res, body) => {
           if (!err) {
             expect(body.data).toBeDefined();
-            expect(body.status).toBe(201);
+            expect(body.status).toBe(200);
           }
           done();
         });
@@ -36,12 +36,12 @@ describe('APIv2 User', () => {
         { json: true, form: {
           "firstName":"Muigabo",
           "lastName":"Prestein",
-          "email":"gprestein055@gmail.com",
+          "email":"ericrukundo005@gmail.com",
           "password":"Eric00005"
         } }, (err, res, body) => {
           if (!err) {
-            expect(body.data).toBeDefined();
-            expect(body.status).toBe(201);
+            expect(body.data).toBe(undefined);
+            expect(body.status).toBe(400);
           }
           done();
         });

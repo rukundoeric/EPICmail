@@ -23,13 +23,6 @@
     "url": "https://github.com/rukundoeric/EPICmail/issues"
   },
   "dependencies": {
-    "@babel/cli": "*",
-    "@babel/core": "*",
-    "@babel/node": "*",
-    "@babel/plugin-transform-regenerator": "*",
-    "@babel/plugin-transform-runtime": "*",
-    "@babel/preset-env": "*",
-    "@babel/runtime": "*",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.0.20",
     "babel-polyfill": "^6.26.0",

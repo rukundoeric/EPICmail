@@ -73,7 +73,7 @@ class Message {
         // then display NOT FOUND MESSAGE
         return res.status(ST.NOT_FOUND).send({
           status: ST.NOT_FOUND,
-          'data': MSG.MSG_DATA_NOT_FOUND,
+          'data': MSG.MSG_DATA_RECEIVED_MESSAGE_NOT_FOUND,
         });
       }
       return res.status(ST.OK).send({
@@ -91,7 +91,7 @@ class Message {
         // then display NOT FOUND MESSAGE
         return res.status(ST.NOT_FOUND).send({
           'status': ST.NOT_FOUND,
-          'data': MSG.MSG_DATA_NOT_FOUND,
+          'data': MSG.MSG_DATA_UNREAD_MESSAGE_NOT_FOUND,
         });
       }
       return res.status(ST.OK).send({
@@ -109,7 +109,7 @@ class Message {
         // then display NOT FOUND MESSAGE
         return res.status(ST.NOT_FOUND).send({
           'status': ST.NOT_FOUND,
-          'data': MSG.MSG_DATA_NOT_FOUND,
+          'data': MSG.MSG_DATA_SENT_MESSAGE_NOT_FOUND,
         });
       }
       return res.status(ST.OK).send({

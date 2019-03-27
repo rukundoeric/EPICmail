@@ -11,7 +11,7 @@ class Helper {
   async hashPassword(password){
     return  bcrpt.hash(password, bcrpt.genSaltSync(6));
   }
-  async isCorrestPassword(pass_req,pass_res){
+  async isCorrestPassword(pass_req, pass_res){
     return bcrpt.compare(pass_req, pass_res);
   }   
 }

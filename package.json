@@ -8,9 +8,9 @@
     "node": "10.15.1"
   },
   "scripts": {
-    "test": "babel-node server/tests/runner.js",
+    "test": "nyc --reporter=html --reporter=text babel-node server/tests/runner.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "start": "node server/config/start.js",
+    "start": "node config/start.js",
     "heroku-postbuild": "npm install --production"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "body-parser": "^1.18.3",
     "chai": "*",
     "dotenv": "^6.2.0",
+    "eslint": "^5.15.0",
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "generate-sms-verification-code": "^1.0.5",
@@ -55,7 +56,8 @@
     "request": "^2.88.0",
     "swagger-ui-express": "^4.0.2",
     "travis": "^0.1.1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "yamljs": "^0.3.0"
   },
   "keywords": [
     "node",
@@ -64,10 +66,17 @@
   ],
   "homepage": "https://github.com/rukundoeric/EPICmail#readme",
   "devDependencies": {
-    "eslint": "^5.15.3",
+    "@babel/cli": "*",
+    "@babel/core": "*",
+    "@babel/node": "*",
+    "@babel/plugin-transform-regenerator": "*",
+    "@babel/plugin-transform-runtime": "*",
+    "@babel/preset-env": "*",
+    "@babel/runtime": "*",
     "codecov": "^3.2.0",
     "coveralls": "^3.0.2",
-    "istanbul": "^0.4.5",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "istanbul": "^0.4.5"
   }
 }

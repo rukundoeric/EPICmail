@@ -14,7 +14,7 @@ describe('User', () => {
         jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
     });
 
-    describe('User Model', () => {
+    describe('User Model', () => {0
         
         it('Should Create an instance of User', (done) => {
             expect(UserModel.data.type).toBe('dataList');

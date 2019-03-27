@@ -1,15 +1,4 @@
-const apiUrlv1 = '/api/v1';
 const apiUrlv2 = '/api/v2';
-
-// All api for v1
-const apiUrlv1auth = `${apiUrlv1}/auth`;
-const apiUrlv1authLogin = `${apiUrlv1auth}/login`;
-const apiUrlv1authSignup = `${apiUrlv1auth}/signup`;
-const apiUrlv1messages = `${apiUrlv1}/messages`;
-const apiUrlv1messagesUnread = `${apiUrlv1messages}/unread`;
-const apiUrlv1messagesSent = `${apiUrlv1messages}/sent`;
-const apiUrlv1messagesAction = `${apiUrlv1messages}/:id`;
-
 // All api for v2
 const apiUrlv2auth = `${apiUrlv2}/auth`;
 const apiUrlv2authLogin = `${apiUrlv2auth}/login`;
@@ -27,7 +16,7 @@ const apiUrlv2SendMessageToGroup = `${apiUrlv2}/groups/:groupid/messages`;
 const apiUrlv2RenameGroup = `${apiUrlv2}/groups/:groupid`;
 
 const apiUrlv2passwordReset      =  `${apiUrlv2}/auth/reset`;
-const apiUrlv2ConfirmPasswordReset=`${apiUrlv2}/auth/reset/:userid`
+const apiUrlv2ConfirmPasswordReset=`${apiUrlv2}/auth/reset/:userid`;
 // Acccount Verification
 const verification_link_development = 'http://localhost:7070/api/v2/auth/signup';
 const verification_link_production = 'https://epicmaileric.herokuapp.com/api/v2/auth/signup';
@@ -35,12 +24,6 @@ const verification_link_production = 'https://epicmaileric.herokuapp.com/api/v2/
 const reset_link_development= 'http://localhost:7070/api/v2/auth/reset';
 const reset_link_production = 'https://epicmaileric.herokuapp.com/api/v2/auth/reset';
 export {
-  apiUrlv1authLogin,
-  apiUrlv1authSignup,
-  apiUrlv1messages,
-  apiUrlv1messagesUnread,
-  apiUrlv1messagesSent,
-  apiUrlv1messagesAction,
   apiUrlv2authVerification,
   apiUrlv2authLogin,
   apiUrlv2authSignup,

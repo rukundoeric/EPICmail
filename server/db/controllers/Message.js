@@ -12,14 +12,14 @@ import { CREATE_MESSAGE,
   GET_SENT_RECEIVED_MESSAGES,
   GET_SPECIFIC_MESSAGES,
   DELETE_MESSAGES,
-  GET_USER_BY_ID } from '../helpers/query'
+  GET_USER_BY_ID } from '../helpers/query';
 import db from '../db';
 import validation from '../../helpers/validation';
 
 dotenv.config();
 class Message {
   async createMessage(req, res) {
-    joi.validate(req.body, validation.Validator.messageSchema).then((result) => {
+    joi.validate(req.body, validation.Validator.messageSchema).then(() => {
       db.query(GET_USER, [req.body.to]).then((receiver) => {
         if (!receiver.rows[0]) {
           res.status(ST.OK).send({
@@ -33,29 +33,30 @@ class Message {
                 'status': ST.NOT_FOUND,
                 'error':  { message: ' You can not send message to your self.' },
               });
-             } else {
-                const message = [
-                  req.user.id,
-                  `${receiver.rows[0].id}`,
-                  req.body.subject,
-                  req.body.message,
-                  !req.body.parentMessageId ? 0 : req.body.parentMessageId,
-                  req.body.status,
-                  moment(new Date()),
-                ];
-                db.query(CREATE_MESSAGE, message).then((result) => {
-                  if ([result.rows[0].status] != 'draft') {
-                    const inbox = [result.rows[0].id, result.rows[0].receiverid, moment(new Date())];
-                    const sent = [result.rows[0].id, result.rows[0].senderid, moment(new Date())];
-                    db.query(CREATE_INBOX, inbox);
-                    db.query(CREATE_SENT, sent);
-                  }
-                  res.status(ST.CREATED).send({
-                    status: ST.CREATED,
-                    data: result.rows[0],
-                  });
+            } else {
+              const message = [
+                req.user.id,
+                `${receiver.rows[0].id}`,
+                req.body.subject,
+                req.body.message,
+                !req.body.parentMessageId ? 0 : req.body.parentMessageId,
+                req.body.status,
+                moment(new Date()),
+              ];
+              db.query(CREATE_MESSAGE, message).then((result) => {
+                const notIsDraft = [result.rows[0].status] != 'draft';
+                if (notIsDraft) {
+                  const inbox = [result.rows[0].id, result.rows[0].receiverid, moment(new Date())];
+                  const sent = [result.rows[0].id, result.rows[0].senderid, moment(new Date())];
+                  db.query(CREATE_INBOX, inbox);
+                  db.query(CREATE_SENT, sent);
+                }
+                res.status(ST.CREATED).send({
+                  status: ST.CREATED,
+                  data: result.rows[0],
                 });
-             }
+              });
+            }
           });
         
         }
@@ -122,7 +123,7 @@ class Message {
 
   async getMessage(req, res) {
     const id = req.params;
-    joi.validate(id, validation.Validator.getOrDelMsgSchema).then((result) => {
+    joi.validate(id, validation.Validator.getOrDelMsgSchema).then(() => {
       db.query(GET_SPECIFIC_MESSAGES, [id.id]).then((message) => {
         if (!message.rows[0]) {
           // Here message is Underfined , which means is not found
@@ -154,7 +155,7 @@ class Message {
 
   async deleteMessage(req, res) {
     const id = req.params;
-    joi.validate(id, validation.Validator.getOrDelMsgSchema).then((result) => {
+    joi.validate(id, validation.Validator.getOrDelMsgSchema).then(() => {
       db.query(GET_SPECIFIC_MESSAGES, [id.id]).then((message) => {
         if (!message.rows[0]) {
           // Here message is Underfined , which means is not found

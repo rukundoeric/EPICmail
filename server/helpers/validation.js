@@ -1,5 +1,4 @@
 import joi from 'joi';
-
 class Validation {
   constructor() {
     this.Validator = {
@@ -45,7 +44,7 @@ class Validation {
         memberid: joi.string().regex(/^[a-zA-Z]/).min(1).required(),
         role: joi.string().regex(/^[a-zA-Z]/).min(1).required(),
       }),
-    };
+    }; 
   }
 }
 export default new Validation();

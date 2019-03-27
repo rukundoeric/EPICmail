@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import moment from 'moment';
 import joi from 'joi';
 import ST from '../../helpers/status';
@@ -43,7 +42,7 @@ class Group {
 
   async deletegroup(req, res) {
     const id = req.params;
-    joi.validate(id, validation.Validator.getOrDelMsgSchema).then((result) => {
+    joi.validate(id, validation.Validator.getOrDelMsgSchema).then(() => {
       db.query(GET_GROUP_MEMBER, [id.id, req.user.id]).then((member) => {
         if (member.rows[0]) {
           if (member.rows[0].role != 'owner') {
@@ -106,7 +105,7 @@ class Group {
   }
 
   async createMessage(req, res) {
-    joi.validate(req.body, validation.Validator.groupMessageSchema).then((result) => {
+    joi.validate(req.body, validation.Validator.groupMessageSchema).then(() => {
       const message = [
         req.user.id,
         `${req.params.groupid}`,
@@ -117,7 +116,7 @@ class Group {
         moment(new Date()),
       ];
       db.query(CREATE_MESSAGE, message).then((result) => {
-        if ([result.rows[0].status] != 'draft') {
+        if (this.newMethod(result)) {
           const inbox = [result.rows[0].id, result.rows[0].receiverid, moment(new Date())];
           const sent = [result.rows[0].id, result.rows[0].senderid, moment(new Date())];
           db.query(CREATE_INBOX, inbox);
@@ -135,15 +134,19 @@ class Group {
     }));
   }
 
+  newMethod(result) {
+    return [result.rows[0].status] != 'draft';
+  }
+
   async chanangeGroupName(req, res) {
     joi.validate(req.body, validation.Validator.groupSchema).then(() => {
       db.query(GET_GROUP, [req.params.groupid]).then((group) => {
         if (group.rows[0]) {
-          db.query(UPDATE_GROUP_NAME, [req.body.name, req.params.groupid]).then((group) => {   
+          db.query(UPDATE_GROUP_NAME, [req.body.name, req.params.groupid]).then(() => {   
             res.status(ST.OK).send({
               status: ST.OK,
               message: MSG.MSG_GROUP_NAME_UPDATED,
-            })
+            });
           });
         } else {
           return res.status(ST.NOT_FOUND).send({

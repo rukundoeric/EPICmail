@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 import verification_code from 'generate-sms-verification-code';
@@ -6,7 +5,6 @@ import joi from 'joi';
 import ST from '../../helpers/status';
 import MSG from '../../helpers/res_messages';
 import auth from '../middleware/auth';
-import connection from '../connection/connection';
 import {
   CREATE_USER,
   VERIFIE_USER,
@@ -19,7 +17,6 @@ import {
 import Helper from '../../helpers/Helper';
 import validation from '../../helpers/validation';
 import db from '../db';
-const pool = connection.getPoolConnection();
 
 class User {
 
@@ -65,7 +62,7 @@ class User {
             });
           } else if (verfication.rows[0].code == req.params.code) {
             db.query(VERIFIE_USER, [req.params.email]).then((user_rs) => {
-              db.query(DELETE_VERIFICATION, [req.params.email]).then((result) => {
+              db.query(DELETE_VERIFICATION, [req.params.email]).then(() => {
                 auth.generateToken(user_rs.rows[0].id).then((token) => {
                   res.status(ST.CREATED).send({
                     status: ST.CREATED,
@@ -89,7 +86,7 @@ class User {
   }
 
   async login(req, res) {
-    joi.validate(req.body, validation.Validator.loginSchema).then((result) => {
+    joi.validate(req.body, validation.Validator.loginSchema).then(() => {
       db.query(GET_USER, [req.body.email]).then((user) => {
         if (!user.rows[0]) {
           return res.status(ST.NOT_FOUND).send({
@@ -116,46 +113,46 @@ class User {
           }
         });
       
-    }).catch(error => res.send({
-      status: 400,
-      error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
-    }));
+      }).catch(error => res.send({
+        status: 400,
+        error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
+      }));
     });
 
   }
   // Password reset
   async passwordReset(req, res, next){
-    joi.validate(req.body, validation.Validator.passwordResetShema).then((result) => {
+    joi.validate(req.body, validation.Validator.passwordResetShema).then(() => {
       db.query(GET_USER, [req.body.email]).then((user) => {
-          if(!user.rows[0]){
+        if(!user.rows[0]){
           return res.status(ST.NOT_FOUND).send({
-            "status": ST.NOT_FOUND,
-            "error": {"message":"User not registered"}
-          })
-          } else {
-            req.mail={id: user.rows[0].id, email:req.body.email}
-            next();
-          }
-      })
+            'status': ST.NOT_FOUND,
+            'error': {'message':'User not registered'}
+          });
+        } else {
+          req.mail={id: user.rows[0].id, email:req.body.email};
+          next();
+        }
+      });
     }).catch(error => res.send({
-      "status": 400,
-      "error" : {"message": error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
+      'status': 400,
+      'error' : {'message': error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
     }));
   }
   // Confirm password reset
   async confirmpasswordReset(req, res){
-    joi.validate(req.body, validation.Validator.passwordShema).then((result) => {
+    joi.validate(req.body, validation.Validator.passwordShema).then(() => {
       Helper.hashPassword(req.body.newPassword).then((pass) => {
         db.query(USER_PASSWORD_RESET,[pass,req.params.userid]).then(() => {   
           return res.status(ST.OK).send({
-            "status": ST.OK,
-            "error": {"message":"Password changed successfuly"}
-          })
-        })
-      })
+            'status': ST.OK,
+            'error': {'message':'Password changed successfuly'}
+          });
+        });
+      });
     }).catch(error => res.send({
-      "status": 400,
-      "error" : {"message": error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
+      'status': 400,
+      'error' : {'message': error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')}
     }));
   }
 }

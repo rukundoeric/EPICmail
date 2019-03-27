@@ -63,7 +63,7 @@ class Group {
         } else {
           return res.status(ST.NOT_FOUND).send({
             status: ST.NOT_FOUND,
-            error: MSG.MSG_DATA_NOT_FOUND,
+            error: MSG.MSG_DATA_GROUP_NOT_FOUND,
           });
         }
       });

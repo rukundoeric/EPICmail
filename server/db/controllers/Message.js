@@ -128,7 +128,7 @@ class Message {
           // Here message is Underfined , which means is not found
           return res.status(ST.NOT_FOUND).send({
             'status': ST.NOT_FOUND,
-            'error': MSG.MSG_DATA_NOT_FOUND,
+            'error': MSG.MSG_DATA_MESSAGE_NOT_FOUND,
           });
         }
         if (message.rows[0].receiverid === req.user.id
@@ -160,7 +160,7 @@ class Message {
           // Here message is Underfined , which means is not found
           return res.status(ST.NOT_FOUND).send({
             'status': ST.NOT_FOUND,
-            error: MSG.MSG_DATA_NOT_FOUND,
+            error: MSG.MSG_DATA_MESSAGE_NOT_FOUND,
           });
         }
         if (message.rows[0].receiverid === req.user.id

@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import moment from 'moment';
 const hostUrl = 'http://127.0.0.1:4040';
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJhNWZiMDQ1MC0yZGExLTQyNzgtYmEwZi04YjkzMDYwNGI5NzYiLCJpYXQiOjE1NTMyMjczNjEsImV4cCI6MTU1MzgzMjE2MX0.oL1Ni1iOZT-tguUKCCoBBFBcYHX4-lqda7dV4g5r7bw';
+const fek_userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI5YjgzOTlkNS0xOGIwLTRlM2ItYmIwNi1kMGMwMGY1NGFkMjgiLCJpYXQiOjE1NTM4NjY5MjMsImV4cCI6MTU1NDQ3MTcyM30.HUIMttmM7TZx2BniclMir1u9jB14rjSC3j6z6FhGULA';
 const userData =  {
   'id': 'a5fb0450-2da1-4278-ba0f-8b930604b976',
   'email': 'ericrukundo@gmail.com',
@@ -19,8 +19,14 @@ const wrongNewUser =  {
 };
 const newUser =  {
   'email': 'mukunzifelix@gmail.com',
-  'firstName': 'Mukunzi',
-  'lastName': 'Felix',
+  'firstName': 'example',
+  'lastName': 'example',
+  'password': 'Eric00005',
+};
+const testUser = {
+  'email': 'example123@gmail.com',
+  'firstName': 'example',
+  'lastName': 'example',
   'password': 'Eric00005',
 };
 
@@ -33,13 +39,23 @@ const userDetail = {
   'createdOn': '2019-03-05T03:21:04.694Z'
 };
 const loginUser = {
-  'email': 'ericrukundo@gmail.com',
-  'password': 'Eric00005'
+  'email': 'example123@gmail.com',
+  'password': 'Eric00005',
 };
 const loginUserWrongPass = {
-  'email':'ericrukundo005@gmail.com',
-  'password': '243434'
+  'email': 'example123@gmail.com',
+  'password': 'Eri004343405',
 };
+
+const loginUserNotFound = {
+  'email': 'example1234567@gmail.com',
+  'password': 'Eri004343405',
+};
+const loginUserInvalidInput = {
+  'email': 'example1234567com',
+  'password': 'Eri004343405',
+};
+
 const loginUserInvalidToken = {
   'email':'ericrukundo005@gmail.com',
   'password': '130211'
@@ -55,9 +71,9 @@ const sent = {
   'createdOn':moment(new Date())
 };    
 const message =   {
-  'subject': 'Invitaion to mariage',
+  'subject': 'TestMessage',
   'message': 'Hello there ',
-  'to': 'ericrukundo@gmail.com',
+  'to': 'example123@gmail.com',
   'status': 'sent'
 };
 const invalid_message =   {
@@ -86,7 +102,7 @@ const contact = {
 
 export {
   hostUrl,
-  userToken,
+  fek_userToken,
   userData,
   userDetail,
   loginUser,
@@ -100,5 +116,8 @@ export {
   groupmember,
   contact,
   newUser,
-  wrongNewUser
+  wrongNewUser,
+  testUser,
+  loginUserNotFound,
+  loginUserInvalidInput
 };

@@ -458,9 +458,6 @@ const createContactRow = (tbody, position,data) => {
 }
 
 
-
-
-
 const RefleshContent = (type) => {
    try{
 

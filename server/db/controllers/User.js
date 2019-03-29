@@ -60,10 +60,10 @@ class User {
               status: ST.BAD_REQUEST,
               error: { message: 'Invalid Verification' },
             });
-          } else if (verfication.rows[0].code == req.params.code) {
-            db.query(VERIFIE_USER, [req.params.email]).then((user_rs) => {
+          } else if (verfication.rows[0].code === req.params.code) {
+            db.query(VERIFIE_USER, [req.params.email]).then(() => {
               db.query(DELETE_VERIFICATION, [req.params.email]).then(() => {
-                auth.generateToken(user_rs.rows[0].id).then((token) => {
+                auth.generateToken(user.rows[0].id).then((token) => {
                   res.status(ST.CREATED).send({
                     status: ST.CREATED,
                     data: {
@@ -77,7 +77,7 @@ class User {
           } else {
             res.status(ST.BAD_REQUEST).send({
               status: ST.BAD_REQUEST,
-              error: { message: 'Invalid Verification' },
+              error: { message: 'Invalid Verification code' },
             });
           }
         });
@@ -102,6 +102,7 @@ class User {
                 data: {
                   message: 'User logged in successfuly',
                   token,
+                  user: user.rows[0],
                 },
               });
             });
@@ -113,11 +114,11 @@ class User {
           }
         });
       
-      }).catch(error => res.send({
-        status: 400,
-        error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
-      }));
-    });
+      });
+    }).catch(error => res.send({
+      status: 400,
+      error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
+    }));
 
   }
   // Password reset
@@ -144,9 +145,9 @@ class User {
     joi.validate(req.body, validation.Validator.passwordShema).then(() => {
       Helper.hashPassword(req.body.newPassword).then((pass) => {
         db.query(USER_PASSWORD_RESET,[pass,req.params.userid]).then(() => {   
-          return res.status(ST.OK).send({
-            'status': ST.OK,
-            'error': {'message':'Password changed successfuly'}
+          return res.status(ST.CREATED).send({
+            'status': ST.CREATED,
+            'data': {'message':'Password changed successfuly'}
           });
         });
       });

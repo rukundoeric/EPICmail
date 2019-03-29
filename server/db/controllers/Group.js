@@ -26,13 +26,6 @@ class Group {
           status: ST.CREATED,
           data: group.rows[0],
         }));
-      }).catch((err) => {
-        if (err.routine === '_bt_check_unique') {
-          return res.status(ST.BAD_REQUEST).send({
-            status: ST.BAD_REQUEST,
-            error: MSG.MSG_GROUP_ALEADY_EXIST,
-          });
-        }
       });
     }).catch(error => res.send({
       status: 400,
@@ -42,34 +35,30 @@ class Group {
 
   async deletegroup(req, res) {
     const id = req.params;
-    joi.validate(id, validation.Validator.getOrDelMsgSchema).then(() => {
-      db.query(GET_GROUP_MEMBER, [id.id, req.user.id]).then((member) => {
-        if (member.rows[0]) {
-          if (member.rows[0].role != 'owner') {
-            res.status(ST.UNAUTHORIZED).send({
-              status: ST.UNAUTHORIZED,
-              error: MSG.MSG_PRGS_DELETE_GROUP,
-            });
-          } else {
-            db.query(DELETE_GROUP, [id.id]).then(() => {
-              db.query(DELETE_GROUP_MEMBERS, [id.id]);
-              res.status(ST.OK).send({
-                status: ST.OK,
-                data: MSG.MSG_GROUP_DELETED_SUCCESSFUL,
-              });
-            });
-          }
+    db.query(GET_GROUP_MEMBER, [id.id, req.user.id]).then((member) => {
+      if (member.rows[0]) {
+        if (member.rows[0].role != 'owner') {
+          res.status(ST.UNAUTHORIZED).send({
+            status: ST.UNAUTHORIZED,
+            error: MSG.MSG_PRGS_DELETE_GROUP,
+          });
         } else {
-          return res.status(ST.NOT_FOUND).send({
-            status: ST.NOT_FOUND,
-            error: MSG.MSG_DATA_GROUP_NOT_FOUND,
+          db.query(DELETE_GROUP, [id.id]).then(() => {
+            db.query(DELETE_GROUP_MEMBERS, [id.id]);
+            res.status(ST.OK).send({
+              status: ST.OK,
+              data: MSG.MSG_GROUP_DELETED_SUCCESSFUL,
+            });
           });
         }
-      });
-    }).catch(error => res.send({
-      status: 400,
-      error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
-    }));
+      } else {
+        return res.status(ST.NOT_FOUND).send({
+          status: ST.NOT_FOUND,
+          error: MSG.MSG_DATA_GROUP_NOT_FOUND,
+        });
+      }
+    });
+  
   }
 
   async addUserToGroup(req, res) {
@@ -116,7 +105,7 @@ class Group {
         moment(new Date()),
       ];
       db.query(CREATE_MESSAGE, message).then((result) => {
-        if (this.newMethod(result)) {
+        if (result.rows[0].status != 'draft') {
           const inbox = [result.rows[0].id, result.rows[0].receiverid, moment(new Date())];
           const sent = [result.rows[0].id, result.rows[0].senderid, moment(new Date())];
           db.query(CREATE_INBOX, inbox);
@@ -133,25 +122,20 @@ class Group {
       error: { message: error.details[0].message.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '') },
     }));
   }
-
-  newMethod(result) {
-    return [result.rows[0].status] != 'draft';
-  }
-
   async chanangeGroupName(req, res) {
     joi.validate(req.body, validation.Validator.groupSchema).then(() => {
       db.query(GET_GROUP, [req.params.groupid]).then((group) => {
         if (group.rows[0]) {
           db.query(UPDATE_GROUP_NAME, [req.body.name, req.params.groupid]).then(() => {   
-            res.status(ST.OK).send({
-              status: ST.OK,
-              message: MSG.MSG_GROUP_NAME_UPDATED,
+            res.status(ST.CREATED).send({
+              status: ST.CREATED,
+              data:{message: MSG.MSG_GROUP_NAME_UPDATED},
             });
           });
         } else {
           return res.status(ST.NOT_FOUND).send({
             status: ST.NOT_FOUND,
-            error: MSG.MSG_DATA_NOT_FOUND,
+            error: MSG.MSG_DATA_GROUP_NOT_FOUND,
           });
         }
       });

@@ -22,6 +22,7 @@ const CREATE_USER =
       users(id, firstName, lastName, email, password, createdOn, modifiedOn, verified)
       VALUES($1, $2, $3, $4, $5,$6, $7, $8)
       returning *`;
+
 const GET_USER = 'SELECT * FROM users WHERE email = $1';  
 const GET_USER_BY_ID = 'SELECT * FROM users WHERE id = $1';       
 const VERIFIE_USER ='UPDATE users SET verified=true WHERE email = $1';      
@@ -84,7 +85,7 @@ const CREATE_GROUP_TABLE =
   `CREATE TABLE IF NOT EXISTS
     groups(
       id SERIAL PRIMARY KEY,
-      name VARCHAR(128) UNIQUE NOT NULL
+      name VARCHAR(128) NOT NULL
     )`;
 const CREATE_GROUP_RECORD =
     `INSERT INTO
@@ -110,6 +111,12 @@ const DELETE_GROUP ='DELETE FROM groups WHERE id = $1';
 const DELETE_GROUP_MEMBERS = 'DELETE FROM groupMember WHERE groupid = $1'; 
 const DELETE_GROUP_MEMBER = 'DELETE FROM groupMember WHERE groupid = $1 AND memberid = $2';        
 const UPDATE_GROUP_NAME ='UPDATE groups SET name = $1 WHERE id = $2'; 
+
+const DELETE_TEST_USER = 'DELETE FROM users WHERE lastname = $1 ';
+const DELETE_ALL_TEST_MESSAGES=  'DELETE FROM messages WHERE subject = $1';
+const DELETE_ALL_G_TEST_MESSAGES=  'DELETE FROM messages WHERE id = $1';
+const DELETE_ALL_TEST_INBOX= 'DELETE FROM inbox WHERE receiverid = $1';
+const DELETE_ALL_TEST_SENT= 'DELETE FROM sent WHERE senderid = $1';
 export {
   CREATE_USER_TABLE,
   CREATE_MESSAGE_TABLE,
@@ -142,4 +149,9 @@ export {
   DELETE_GROUP_MEMBER,
   UPDATE_GROUP_NAME,
   USER_PASSWORD_RESET,
+  DELETE_TEST_USER,
+  DELETE_ALL_TEST_MESSAGES,
+  DELETE_ALL_TEST_INBOX,
+  DELETE_ALL_TEST_SENT,
+  DELETE_ALL_G_TEST_MESSAGES,
 };

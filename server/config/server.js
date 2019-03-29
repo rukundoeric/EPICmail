@@ -34,7 +34,7 @@ app.use((err, req, res) => {
 });
 const run = (port = '') => {
   const server = app.listen(port || PORT, () => {
-    console.log(`\n Server is running on PORT  ${port || PORT}...`);
+    // console.log(`\n Server is running on PORT  ${port || PORT}...`);
   });
   return server;
 };

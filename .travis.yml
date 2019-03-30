@@ -1,21 +1,28 @@
+sudo: false
 language: node_js
-
-node_js: 
-  - "stable"
-
+node_js:
+  - "10.15.1"
+branches:
+  only:
+    - develop
+install:
+  - npm install
+  - npm install -g coveralls
+  - npm install -g psql
 cache:
   directories:
     - "node_modules"
-    
+script:
+  - npm run test
 after_success:
-- npm run coveralls
+  - npm run coveralls
 
 services:
   - postgresql
-  
 addons:
   postgresql: "9.6"
 
   before_script:
-    - cp config/database.yml.travis config/database.yml                                                                   
-    - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+

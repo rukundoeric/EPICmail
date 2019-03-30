@@ -17,4 +17,5 @@ addons:
   postgresql: "9.6"
 
   before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database epicmail;' -U postgres
+  - psql -c "CREATE USER eric WITH PASSWORD '44444';" -U postgres

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import moment from 'moment';
-const hostUrl = 'http://127.0.0.1:4040';
+const hostUrl = 'https://epicmaileric.herokuapp.com';
 const fek_userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI5YjgzOTlkNS0xOGIwLTRlM2ItYmIwNi1kMGMwMGY1NGFkMjgiLCJpYXQiOjE1NTM4NjY5MjMsImV4cCI6MTU1NDQ3MTcyM30.HUIMttmM7TZx2BniclMir1u9jB14rjSC3j6z6FhGULA';
 const userData =  {
   'id': 'a5fb0450-2da1-4278-ba0f-8b930604b976',

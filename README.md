@@ -15,7 +15,12 @@ EPICmail is mailing platform which help users to share, send messages arround th
 * User can send message to group or individual
 * User can read received messages
 * User can retract sent message
-
+* User can create Group and own it
+* User owner can Add user to the group
+* User owner can remove a user from the group 
+* User owner can delete the group
+* User owner can change group name
+* User can reset his/her forgoten password
 
 ## EndPoints
 * This the [link](https://epicmaileric.herokuapp.com/) which to access the api.
@@ -25,21 +30,36 @@ Below are the colletion of routes.
 
 ### Users 
 
-| Endpoint                   | Methods   | Functionalities        |
-| ---------------------------|-----------|------------------------|
-| /api/v1/auth/signup        | POST      | Signup                 |
-| /api/v1/auth/login         | POST      | Login                  |
+| Endpoint                            | Methods   | Functionalities           |
+| ------------------------------------|-----------|---------------------------|
+| /api/v2/auth/signup                 | POST      | Signup                    |
+| /api/v2/auth/login                  | POST      | Login                     |
+| /api/v2/auth/signup/:userid/:code   | POST      | Verifier Account          |
+| /api/v2/auth/reset                  | POST      | Password Reset            |
+| /api/v2/auth/reset/:userid          | POST      | Confirm Password Reset    | 
 
 ### Messages
 
-| Endpoint                   | Methods   | Functionalities                    |
-| ---------------------------|-----------|--------------------------------    |
-| /api/v1/messages           | POST      | Send Message                       | 
-| /api/v1/messages           | GET       | Get All Received Messages          |
-| /api/v1/messages/unread    | GET       | Get All unread Received Messages   | 
-| /api/v1/messages/sent      | GET       | Get All  Sent Messages             |
-| /api/v1/messages/:id       | GET       | Get specific  Messages             |
-| /api/v1/messages/:id       | DELETE    | Delete Messages                    |
+| Endpoint                              | Methods   | Functionalities                    |
+| --------------------------------------|-----------|------------------------------------|
+| /api/v2/messages                      | POST      | Send Message                       | 
+| /api/v2/messages                      | GET       | Get All Received Messages          |
+| /api/v2/messages/unread               | GET       | Get All unread Received Messages   | 
+| /api/v2/messages/sent                 | GET       | Get All  Sent Messages             |
+| /api/v2/messages/:id                  | GET       | Get specific  Messages             |
+| /api/v2/messages/:id                  | DELETE    | Delete Messages                    |
+
+
+### Groups
+
+| Endpoint                              | Methods   | Functionalities                    |
+| --------------------------------------|-----------|------------------------------------|
+| /api/v2/groups                        | POST      | Create a group                     |
+| /api/v2/groups/:groupid/users/:userid | POST      | Add user to the group              |
+| /api/v2/groups/:groupid/users/:userid | DELETE    | Remove User from the group         |
+| /api/v2/groups/:groupid               | PATCH     | Change group name                  |
+| /api/v2/groups/:groupid/messages      | POST      | Send Message to the group          |
+| /api/v2/groups/:groupid               | DELETE    | Delete group                       |
 
 ## Technologies Used
 * HTML5

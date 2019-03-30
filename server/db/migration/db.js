@@ -19,7 +19,6 @@ class CREATABLE {
           pool.query(CREATE_SENT_TABLE);
           pool.query(CREATE_GROUP_TABLE);
           pool.query(CREATE_GROUP_MEMBER_TABLE);
-          pool.end();
         }
       });
       return true;

@@ -191,15 +191,6 @@ describe('Group:', () => {
             expect(body).to.be.an('object');
             expect(body).to.have.property('status').eql(ST.OK);
             expect(body).to.have.property('data');
-            db.query(DELETE_TEST_USER, ['example']).then(() => {
-              db.query(DELETE_ALL_TEST_MESSAGES,[user.id,user.id]).then(() => {
-                db.query(DELETE_ALL_G_TEST_MESSAGES,[createdMessage.id]).then(() => {
-                  db.query(DELETE_ALL_TEST_INBOX,[user.id]).then(() => {
-                    db.query(DELETE_ALL_TEST_SENT),[user.id];
-                  });
-                });
-              });
-            }); 
           }
           done();
         });

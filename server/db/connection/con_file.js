@@ -10,16 +10,14 @@ class ConnectionConfig {
       password: process.env.TODO_DB_PW,
       database: 'epicmail'
     };
-    this.test =  {
+    this.test = {
       connectionString: 'postgres://postgres@127.0.0.1:5432/travis_ci_test'
     };
     this.production = {
       connectionString: process.env.DATABASE_URL
     };
     this.getConnectionConfig = () => {
-      return this.environment == 'development' ? 
-        this.development : this.environment == 'test' ?
-          this.test : this.production;
+      return this.environment == 'development' ? this.development : this.environment == 'test' ?  this.test : this.production;
     };
   }
 }

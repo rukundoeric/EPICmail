@@ -1,2 +1,3 @@
 exclude_patterns:
 - "UI/js"
+- "server/tests"

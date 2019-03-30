@@ -15,15 +15,6 @@ services:
   
 addons:
   postgresql: "9.6"
-  apt:
-    packages:
-    - postgresql-10
-    - postgresql-client-10
-env:
-  global:
-  - PGPORT=5433
+
   before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-test:
-  adapter: postgresql
-  database: travis_ci_test

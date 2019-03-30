@@ -5,6 +5,7 @@ import Request from 'request';
 import run from '../config/server';
 import ST from '../helpers/status';
 import db from '../db/db';
+import dbtableCreate from '../db/migration/db';
 import Helper from '../helpers/Helper';
 import { hostUrl,
   wrongNewUser, 
@@ -29,17 +30,18 @@ describe('User:', () => {
   let userId=uuidv4();
   before(async (done) => {
     server = run(4040);
-    Helper.hashPassword(testUser.password).then((pass) => {
-      const values = [userId, testUser.firstName, testUser.lastName, testUser.email, pass, moment(new Date()), moment(new Date()), true];
-      db.query(CREATE_USER,values);
+    dbtableCreate.createTables().then(() => {
+      Helper.hashPassword(testUser.password).then((pass) => {
+        const values = [userId, testUser.firstName, testUser.lastName, testUser.email, pass, moment(new Date()), moment(new Date()), true];
+        db.query(CREATE_USER,values);
+      });
     });
     done();
   });
   after((done) => {
     server.close();
     done();
-  });
-   
+  });  
   describe('POST User Signup /auth/signup:',() => {  
     it('Should Return Error for wrong Inputs', (done) => {
       Request.post(`${hostUrl}${apiUrlv2authSignup}`,

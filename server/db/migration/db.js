@@ -9,7 +9,7 @@ import connection from '../connection/connection';
 const pool = connection.getPoolConnection();
 class CREATABLE {
   constructor(){
-    this.createTables = () => {
+    this.createTables = async () => {
       pool.connect((err) => {
         if(!err){
           pool.query(CREATE_USER_TABLE);
@@ -22,6 +22,7 @@ class CREATABLE {
           pool.end();
         }
       });
+      return true;
     };
   }
 }

@@ -11,7 +11,7 @@ class ConnectionConfig {
       database: 'epicmail'
     };
     this.test = {
-      connectionString: 'postgres://postgres@127.0.0.1:5432/travis_ci_test'
+      connectionString: process.env.TEST_DATABASE_URL
     };
     this.production = {
       connectionString: process.env.DATABASE_URL

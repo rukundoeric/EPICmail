@@ -19,7 +19,7 @@ class CountryCodeNumber{
     	return names;
     }
     getFlag(code){
-        return '../dist/images/flags/'+code.toLowerCase(code)+'.png';
+        return '../../assets/images/flags/'+code.toLowerCase(code)+'.png';
     }
     createCountryList(){
           var dataList = document.getElementById('country_list');
